@@ -10,7 +10,7 @@
   <p>This repo can be used for projects that use webpack bundling. Take a look at  file</p>
 
 </div>
-[webpack installation readme](WebPackInstallation.md)
+
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
