@@ -121,4 +121,4 @@ module.exports = {
 - `npm i -D babel-loader @babel/core @babel/preset-env` to install babel that will make your code run on browsers
 - build  your bundle `npm run build`
 - to liveview your code `npm run dev`
--
+- add file-loader to see all the used images in the server with `npm i -D file-loader`

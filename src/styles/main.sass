@@ -1,58 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
-
-$primary-color: #2fa8cc
-$secondary-color: #f4f4f4
-$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
-
-*
-    box-sizing: border-box
-
-body
-    background-color: $primary-color
-    font-family: 'Roboto', sans-serif
-    display: flex
-    flex-direction: column
-    align-items: center
+@import global
+#formContainer
+    @include columnFlex
+    gap: .2rem
     justify-content: center
-    height: 100vh
-    overflow: hidden
-    margin: 0
-    padding: 20px
+    align-items: center
+div, li
+    @include rowFlex
+    justify-content: space-between
+    align-items: center
+    height: 2.5rem
+    border-radius: 4px
+    border: 0
+    padding: .1rem
+    align-self: stretch
+li
+    justify-content: center
+    .onEdit
+        background-color: rgb(253, 227, 178)
+div
+    h1
+        @include smlInterH3
+    #userInput
+        width: 100%
+input
+    height: 2rem
+    border: 0
+    padding: .3rem
+    align-self: stretch
+    border-radius: 2px
 
+#checkB
+    border-radius: 4px
+    width: 5vw
+    align-self: center
 .container
     background-color: $secondary-color
-    border-radius: 10px
+    border-radius: 4px
     box-shadow: $box-shadow
-    padding: 50px 20px
-    text-align: center
+    padding: 15px 5px
+    text-align: left
     max-width: 100%
     width: 800px
-
-h3
-    margin: 0
-    opacity: 0.5
-    letter-spacing: 2px
-
 img
-    width: 100px
-    margin-bottom: 20px
+    height: 1.5rem
+    transition: all 0.2s
+#recyclImg
+    opacity: .5
+    &:hover
+        opacity: 1
+#dotsImg
+    opacity: 7
 
-.joke
-    font-size: 30px
-    letter-spacing: 1px
-    line-height: 40px
-    margin: 50px auto
-    max-width: 600px
-
-.btn
-    background-color: $primary-color
-    color: $secondary-color
-    border: 0
-    border-radius: 10px
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
-    padding: 14px 40px
-    font-size: 16px
-    cursor: pointer
+    &::active
+        background-image: url(../assets/trash-can.png)
+        background-size: 100%
+        background-repeat: no-repeat
+#clearBtn
+    @include button
+    width: 100%
 
     &:active
         transform: scale(0.98)

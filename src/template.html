@@ -7,11 +7,30 @@
     <title>%= htmlWebpackPlugin.options.title %</title>
   </head>
   <body>
-    <div class="container">
-      <img id="laughImg" alt="" />
-      <h3>Don't Laugh Challenge</h3>
-      <div id="joke" class="joke"></div>
-      <button id="jokeBtn" class="btn">Get Another Joke</button>
-    </div>
+    <main class="container">
+      <div id="title">
+        <h1 for="cars">ToDo List:</h1>
+        <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
+      </div>
+      <div id="userField">
+        <input placeholder="Add to the list" id="userInput" type="text" />
+        <img id="addBtn" alt="add new task" src="./assets/enter.png" />
+      </div>
+
+      <ul></ul>
+
+      <button id="clearBtn" type="button">Clear all Completed</button>
+
+      <!-- <form id="formContainer" action="">
+
+        <fieldset id="userField"><input placeholder="Add to the list" id="userInput" type="text" /></fieldset>
+
+        <fieldset id="listField">
+          <input type="checkbox" id="checkB" />
+          <input class="listItems" type="text" readonly />
+          <img id="dotsImg" src="./assets/three-dots.png" alt="" />
+        </fieldset>
+      </form> -->
+    </main>
   </body>
 </html>
