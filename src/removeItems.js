@@ -2,9 +2,6 @@ const completedIsFalse = (task) => task.completed === false;
 
 export default completedIsFalse;
 
-
-
-
 // import TaskObject from './userInput.js';
 // import completedIsFalse from './removeItems.js';
 
@@ -163,25 +160,6 @@ export default completedIsFalse;
 
 // export default TaskList;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import TaskObject from './TaskObject.js';
 // import completedIsFalse from './CompletedFilter.js';
 // import Drag from './drag-handle-minor-svgrepo-com.svg';
@@ -192,9 +170,9 @@ export default completedIsFalse;
 //   constructor() {
 //     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
 //   }
-// // in this method she added all events that can be done in the userinput 
+// // in this method she added all events that can be done in the userinput
 //   init() {
-    
+
 //     const addButton = document.getElementById('add-btn');
 //     addButton.addEventListener('click', (event) => {
 //       event.preventDefault();
@@ -265,7 +243,7 @@ export default completedIsFalse;
 //       <img id="dotsImg" src="./assets/three-dots.png" alt="" />
 //       `
 //       addedTasks.appendChild(listItem);
-      
+
 //       // const label = document.createElement('label');
 //       const input = document.createElement('input');
 

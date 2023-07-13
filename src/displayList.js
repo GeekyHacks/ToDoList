@@ -1,13 +1,14 @@
 import { TaskObject, taskarr } from './userInput.js';
-import completedIsFalse from './removeItems.js';
+// import completedIsFalse from './removeItems.js';
 
 const addBtn = document.getElementById('addBtn');
 
-TaskObject;
+// TaskObject;
 class DisplayTasks {
   constructor() {
-    taskarr;
+    this.array = taskarr;
   }
+
   addTask() {
     addBtn.addEventListener('click', (event) => {
       event.preventDefault();
@@ -16,11 +17,10 @@ class DisplayTasks {
 
       listItem.innerHTML = `
               <input type="checkbox" id="checkB" />
-              <p class="listItems" id="addItem" />${this.tasks[i].description}</p>
+              <p class="listItems" id="addItem" />${this.array.description}</p>
               <img id="dotsImg" src="./assets/three-dots.png" alt="" />
               `;
       addedTasks.appendChild(listItem);
-      console.log(addedTasks);
     });
   }
 }

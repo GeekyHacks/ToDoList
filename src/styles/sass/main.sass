@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
 @import global
-#formContainer
+
+body
+    background-color: $primary-color
+    font-family: 'Roboto', sans-serif
+    // height: 100vh
+.container
     @include columnFlex
-    gap: .2rem
-    justify-content: center
-    align-items: center
+    background-color: $secondary-color
+    border-radius: 4px
+    box-shadow: $box-shadow
+    padding: 15px 5px
+    text-align: left
+    margin: 15rem 10rem
 div, li
     @include rowFlex
     justify-content: space-between
@@ -14,8 +22,12 @@ div, li
     border: 0
     padding: .1rem
     align-self: stretch
+    gap: .2rem
+
+img
+
+    height: 2rem
 li
-    justify-content: center
     .onEdit
         background-color: rgb(253, 227, 178)
 div
@@ -34,17 +46,10 @@ input
     border-radius: 4px
     width: 5vw
     align-self: center
-.container
-    background-color: $secondary-color
-    border-radius: 4px
-    box-shadow: $box-shadow
-    padding: 15px 5px
-    text-align: left
-    max-width: 100%
-    width: 800px
-img
-    height: 1.5rem
-    transition: all 0.2s
+
+    cursor: pointer
+    transition: all 0.5s
+
 #recyclImg
     opacity: .5
     &:hover
@@ -53,12 +58,11 @@ img
     opacity: 7
 
     &::active
-        background-image: url(../assets/trash-can.png)
+        // background-image: url(../assets/trash-can.png)
         background-size: 100%
         background-repeat: no-repeat
 #clearBtn
     @include button
-    width: 100%
 
     &:active
         transform: scale(0.98)

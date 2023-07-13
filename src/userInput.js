@@ -17,7 +17,6 @@ class TaskObject {
     taskarr.splice(newTask);
     localStorage.setItem('taskarr', JSON.stringify(taskarr));
   }
-
 }
 
-export {TaskObject, taskarr} ;
+export { TaskObject, taskarr };
