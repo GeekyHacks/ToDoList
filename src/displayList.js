@@ -58,10 +58,9 @@
 
 //   addingEventListener() {
 //     const description =
-//document.getElementById('userInput').value;
+// document.getElementById('userInput').value;
 //     if (description !== '') {
-//       const aTask = new TaskObject(description, this.tasks.length); //inject data into the taskobject class
-//       this.addTask(aTask);
+//       const aTask = new TaskObject(description, this.tasks.length);
 //       this.renderList();
 //       document.getElementById('userInput').value = '';
 //     }
