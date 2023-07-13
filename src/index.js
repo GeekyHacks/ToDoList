@@ -5,13 +5,13 @@ import enter from './assets/enter.png';
 import trashCan from './assets/trash-can.png';
 // import DisplayTasks from './displayList.js';
 
-const refreshImg = refresh;
+// const refreshImg = refresh;
 
-const dotsImg = dots;
+// const dotsImg = dots;
 
-const trashCanImg = trashCan;
+// const trashCanImg = trashCan;
 
-// const taskList = new DisplayTasks();
+// // const taskList = new DisplayTasks();
 
-const enterImg = enter;
+// const enterImg = enter;
 // export { refreshImg, dotsImg, enterImg, trashCanImg };
