@@ -39,7 +39,7 @@ module.exports = {
           },
         },
       },
-      //this will load all images
+      // this will load all images
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         use: [
@@ -55,7 +55,7 @@ module.exports = {
       },
     ],
   },
-  //this will build the dist html file based on the template file
+  // this will build the dist html file based on the template file
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Webpack App',

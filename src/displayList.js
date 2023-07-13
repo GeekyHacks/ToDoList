@@ -1,29 +1,29 @@
-import { TaskObject, taskarr } from './userInput.js';
-// import completedIsFalse from './removeItems.js';
+// import { TaskObject, taskarr } from './userInput.js';
+// // import completedIsFalse from './removeItems.js';
 
-const addBtn = document.getElementById('addBtn');
+// const addBtn = document.getElementById('addBtn');
 
-// TaskObject;
-class DisplayTasks {
-  constructor() {
-    this.array = taskarr;
-  }
+// // TaskObject;
+// class DisplayTasks {
+//   constructor() {
+//     this.array = taskarr;
+//   }
 
-  addTask() {
-    addBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      const addedTasks = document.querySelector('ul');
-      const listItem = document.createElement('li');
+//   addTask() {
+//     addBtn.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       const addedTasks = document.querySelector('ul');
+//       const listItem = document.createElement('li');
 
-      listItem.innerHTML = `
-              <input type="checkbox" id="checkB" />
-              <p class="listItems" id="addItem" />${this.array.description}</p>
-              <img id="dotsImg" src="./assets/three-dots.png" alt="" />
-              `;
-      addedTasks.appendChild(listItem);
-    });
-  }
-}
+//       listItem.innerHTML = `
+//               <input type="checkbox" id="checkB" />
+//               <p class="listItems" id="addItem" />${this.array.description}</p>
+//               <img id="dotsImg" src="./assets/three-dots.png" alt="" />
+//               `;
+//       addedTasks.appendChild(listItem);
+//     });
+//   }
+// }
 
 // const input = document.querySelector('#userInput');
 

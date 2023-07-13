@@ -1,6 +1,6 @@
-const completedIsFalse = (task) => task.completed === false;
+// const completedIsFalse = (task) => task.completed === false;
 
-export default completedIsFalse;
+// export default completedIsFalse;
 
 // import TaskObject from './userInput.js';
 // import completedIsFalse from './removeItems.js';
