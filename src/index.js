@@ -15,4 +15,4 @@ const trashCanImg = trashCan;
 
 const enterImg = enter;
 
-export { refreshImg, dotsImg, enterImg, trashCanImg };
+export {refreshImg, dotsImg, enterImg, trashCanImg};
