@@ -11,6 +11,15 @@
   },
   "extends": ["airbnb-base"],
   "rules": {
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": { "multiline": true, "minProperties": 1 }
+      }
+    ],
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",

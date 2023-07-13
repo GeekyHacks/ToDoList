@@ -1,4 +1,4 @@
-# WebPackTemplate
+# ToDo list
 
 <a name="readme-top"></a>
 
@@ -6,15 +6,15 @@
 
   <br/>
 
-  <h3><b>WebPack Template</b></h3>
-  <p>This repo can be used for projects that use webpack bundling. Take a look at  file</p>
+  <h3><b>ToDo list</b></h3>
+  <p>In this project I will be using webpack to bundle my code, the project is about adding todo list that can be add, removed, marked, and edit. It will include mainly JS code and sass or styling.</p>
 
 </div>
 
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-- [webpack installation readme](#webpack-installation)
+
 
   - [🛠 Built With](#built-with)
     - [Key Features](#key-features)
@@ -31,12 +31,12 @@
 - [❓ FAQ](#faq)
 - [📝 License](#license)
 
-# 📖 WebPack Template <a name="about-project"></a>
+# 📖 ToDo list< <a name="about-project"></a>
 
-**WebPack Template**
-it can be used for projects that use webpack bundling.
+**ToDo list<e**
+the project is about adding todo list that can be add, removed, marked, and edit. It will include mainly JS code and sass or styling.
 
-## 🛠 webpack installation <a name="webpack-installation"> [webpack-installation](WebPackInstallation.md)</a>
+
 
 ## 🛠 Built With <a name="built-with">HTML, CSS and JavaScript</a>
 
@@ -54,7 +54,7 @@ it can be used for projects that use webpack bundling.
 
 </a>
 
-- Can be used to startup any project using webpack
+- the project is about adding todo list that can be add, removed, marked, and edit. It will include mainly JS code and sass or styling.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -62,14 +62,12 @@ it can be used for projects that use webpack bundling.
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To use this template just [visit](https://github.com/GeekyHacks/WebPackTemplate)
-the repository and press on "use this template"
 
 To get a local copy up and running, follow these steps:
 
 - Open your Terminal in your VSCode.
 - Navigate to the desired directory[folder] to which you want to clone the repository to
-- [Copy & Paste] git clone you find in the code button https://github.com/GeekyHacks/WebPackTemplate.git
+- [Copy & Paste] git clone you find in the code button https://github.com/GeekyHacks/ToDoList.git
 
 ### Prerequisites
 
@@ -84,13 +82,13 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-- git clone https://github.com/GeekyHacks/WebPackTemplate.git
+- git clone https://github.com/GeekyHacks/ToDoList.git
 
 Example commands:
 
 ```sh
   cd my-folder
-  git clone https://github.com/GeekyHacks/WebPackTemplate.git
+  git clone https://github.com/GeekyHacks/ToDoList.git
 
 ```
 
@@ -126,7 +124,7 @@ Must-Install-Project-with-the-Following-Programmes:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/GeekyHacks/WebPackTemplate/issues).
+Feel free to check the [issues page](https://github.com/GeekyHacks/ToDoList/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
