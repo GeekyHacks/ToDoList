@@ -6,17 +6,17 @@ class TaskObject {
     this.index = index;
   }
 
-  addObject(description, index) {
+  static addObject(description, index) {
     const newTask = new TaskObject(description, index + 1);
     taskarr.unshift(newTask);
     localStorage.setItem('taskarr', JSON.stringify(taskarr));
   }
 
-  removeObject(description, index) {
+  static removeObject(description, index) {
     const newTask = new TaskObject(description, index - 1);
     taskarr.splice(newTask);
     localStorage.setItem('taskarr', JSON.stringify(taskarr));
   }
 }
 
-// export { TaskObject, taskarr };
+export { TaskObject, taskarr };
