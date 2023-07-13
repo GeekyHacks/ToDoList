@@ -10,7 +10,6 @@ export default completedIsFalse;
 //   constructor() {
 //     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
 //   }
-//   // in this method she added all events that can be done in the userinput
 //   init() {
 //     const addBtn = document.getElementById('addBtn');
 //     addBtn.addEventListener('click', (event) => {
@@ -34,9 +33,6 @@ export default completedIsFalse;
 //       this.renderList();
 //     });
 //   }
-//   // main task of this method is to verify userInput is displayed(not empty) and also the taskes added are rendered
-//   //and when empty it will inject data (atask) using the taskobject class then reset the input for another addition
-
 //   addingEventListener() {
 //     const description = document.getElementById('userInput').value;
 //     if (description !== '') {
@@ -166,7 +162,6 @@ export default completedIsFalse;
 // import Bin from './bin-svgrepo-com.svg';
 
 // class TaskList {
-// // tasks property will be add using the methods following
 //   constructor() {
 //     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
 //   }
@@ -195,8 +190,6 @@ export default completedIsFalse;
 //       this.renderList();
 //     });
 //   }
-// // main task of this method is to verify userInput is displayed(not empty) and also the taskes added are rendered
-// //and when empty it will inject data (atask) using the taskobject class then reset the input for another addition
 
 //   addingEventListener() {
 //     const description = document.getElementById('userInput').value;

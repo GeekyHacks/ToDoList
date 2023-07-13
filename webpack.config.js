@@ -1,11 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: 'development',
   entry: {
-    // __dirname will start in the current directory
     bundle: path.resolve(__dirname, 'src/index.js'),
   },
   output: {
@@ -32,7 +30,6 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        //bable loader will make your project functional on all browsers
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
