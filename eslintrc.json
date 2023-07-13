@@ -14,7 +14,7 @@
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",
-    "max-len": ["error", { "code": 130 }],
+    "max-len": ["error", 130],
     "import/extensions": [
       1,
       {
