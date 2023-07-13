@@ -14,4 +14,6 @@ const trashCanImg = trashCan;
 // const taskList = new DisplayTasks();
 
 const enterImg = enter;
-export { refreshImg, dotsImg, enterImg, trashCanImg } ;
+export  { refreshImg, dotsImg, 
+    enterImg, 
+    trashCanImg };
