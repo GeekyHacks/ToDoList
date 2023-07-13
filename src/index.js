@@ -11,7 +11,7 @@ const dotsImg = dots;
 const tarshCanImg = tarshCan;
 
 
-import TaskList from './displayList.js';
+import DisplayTasks from './displayList.js';
 
 const taskList = new TaskList();
 taskList.init();
