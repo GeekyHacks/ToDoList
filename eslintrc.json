@@ -14,7 +14,7 @@
     "object-curly-newline": [
       "error",
       {
-        "ObjectExpression": "always",
+        "ObjectExpression": "never",
         "ObjectPattern": { "multiline": true },
         "ImportDeclaration": "never",
         "ExportDeclaration": { "multiline": true, "minProperties": 1 }
