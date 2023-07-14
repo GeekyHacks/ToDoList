@@ -12,11 +12,13 @@ class TaskObject {
     localStorage.setItem('taskarr', JSON.stringify(taskarr));
   }
 
-  static removeObject(description, index) {
-    const newTask = new TaskObject(description, index - 1);
-    taskarr.splice(newTask);
-    localStorage.setItem('taskarr', JSON.stringify(taskarr));
-  }
+}
+
+
+static removeObject(task) {
+  taskarr= taskarr.filter((b) => b !==task);
+  localStorage.setItem('taskarr', JSON.stringify(taskarr));
 }
 
 export { TaskObject, taskarr };
+

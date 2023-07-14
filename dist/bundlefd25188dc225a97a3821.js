@@ -1,277 +1,116 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/displayList.js":
 /*!****************************!*\
   !*** ./src/displayList.js ***!
   \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _userInput_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInput.js */ "./src/userInput.js");
-/* harmony import */ var _removeItems_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./removeItems.js */ "./src/removeItems.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// import { TaskObject, taskarr } from './userInput.js';
+// // import completedIsFalse from './removeItems.js';
 
+// const addBtn = document.getElementById('addBtn');
 
-var addBtn = document.getElementById('addBtn');
-_userInput_js__WEBPACK_IMPORTED_MODULE_0__.TaskObject;
-var DisplayTasks = /*#__PURE__*/function () {
-  function DisplayTasks() {
-    _classCallCheck(this, DisplayTasks);
-    _userInput_js__WEBPACK_IMPORTED_MODULE_0__.taskarr;
-  }
-  _createClass(DisplayTasks, [{
-    key: "addTask",
-    value: function addTask() {
-      var _this = this;
-      addBtn.addEventListener('click', function (event) {
-        event.preventDefault();
-        var addedTasks = document.querySelector('ul');
-        var listItem = document.createElement('li');
-        listItem.innerHTML = "\n              <input type=\"checkbox\" id=\"checkB\" />\n              <p class=\"listItems\" id=\"addItem\" />".concat(_this.tasks[i].description, "</p>\n              <img id=\"dotsImg\" src=\"./assets/three-dots.png\" alt=\"\" />\n              ");
-        addedTasks.appendChild(listItem);
-        console.log(addedTasks);
-      });
-    }
-  }]);
-  return DisplayTasks;
-}(); // const input = document.querySelector('#userInput');
+// // TaskObject;
+// class DisplayTasks {
+//   constructor() {
+//     this.array = taskarr;
+//   }
+
+//   addTask() {
+//     addBtn.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       const addedTasks = document.querySelector('ul');
+//       const listItem = document.createElement('li');
+
+//       listItem.innerHTML = `
+//               <input type="checkbox" id="checkB" />
+//               <p class="listItems" id="addItem" />${this.array.description}</p>
+//               <img id="dotsImg" src="./assets/three-dots.png" alt="" />
+//               `;
+//       addedTasks.appendChild(listItem);
+//     });
+//   }
+// }
+
+// const input = document.querySelector('#userInput');
+
 // class TaskList {
 //   // tasks property will be add using the methods following
 //   constructor() {
 //     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
 //   }
-//   // in this method she added all events that can be done in the userinput
 //   init() {
 //     const addBtn = document.getElementById('addBtn');
 //     addBtn.addEventListener('click', (event) => {
 //       event.preventDefault();
 //       this.addingEventListener();
 //     });
+
 //     document.getElementById('userInput').addEventListener('keypress', (event) => {
 //       if (event.key === 'Enter') {
 //         event.preventDefault();
 //         this.addingEventListener();
 //       }
 //     });
+
 //     const clearBtn = document.getElementById('clearBtn');
 //     clearBtn.addEventListener('click', () => {
 //       this.clearCompleted();
 //     });
+
 //     window.addEventListener('load', () => {
 //       this.renderList();
 //     });
 //   }
-//   // main task of this method is to verify userInput is displayed(not empty) and also the taskes added are rendered
-//   //and when empty it will inject data (atask) using the taskobject class then reset the input for another addition
+
 //   addingEventListener() {
-//     const description = document.getElementById('userInput').value;
+//     const description =
+// document.getElementById('userInput').value;
 //     if (description !== '') {
-//       const aTask = new TaskObject(description, this.tasks.length); //inject data into the taskobject class
-//       this.addTask(aTask);
+//       const aTask = new TaskObject(description, this.tasks.length);
 //       this.renderList();
 //       document.getElementById('userInput').value = '';
 //     }
 //   }
+
 //   addTask(aTask) {
 //     this.tasks.push(aTask);
 //     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
 //   }
+
 //   deleteTask(index) {
 //     this.tasks.splice(index, 1);
 //     this.renderList();
 //     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
 //   }
+
 //   clearCompleted() {
 //     this.tasks = this.tasks.filter(completedIsFalse);
 //     this.renderList();
 //     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
 //   }
+
 //   renderList() {
 //     const ul = document.querySelector('ul');
 //     ul.innerHTML = '';
+
 //     const sortedArr = [...this.tasks];
 //     sortedArr.sort((a, b) => a.index - b.index);
+
 //     for (let i = 0; i < sortedArr.length; i += 1) {
 //       this.tasks[i].index = i + 1;
 //       const input = document.querySelector('#userInput');
 //       const addedTasks = document.querySelector('ul');
 //       const listItem = document.createElement('li');
+
 //       listItem.innerHTML = `
 //       <input type="checkbox" id="checkB" />
 //       <p class="listItems" id="addItem" />${this.tasks[i].description}</p>
 //       <img id="dotsImg" src="./assets/three-dots.png" alt="" />
 //       `;
 //       addedTasks.appendChild(listItem);
-//       input.addEventListener('click', () => {
-//         document.querySelectorAll('li').forEach((element) => {
-//           element.classList.remove('onEdit');
-//         });
-//         listItem.classList.add('onEdit');
-//       });
-//       input.addEventListener('blur', () => {
-//         document.querySelectorAll('li').forEach((element) => {
-//           element.classList.remove('onEdit');
-//         });
-//       });
-//       input.value = `${sortedArr[i].description}`;
-//       input.addEventListener('keyup', () => {
-//         sortedArr[i].description = input.value;
-//         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//       });
-//       addedTasks.appendChild(listItem);
-//       const checkBox = document.querySelector('#checkB');
-//       checkBox.addEventListener('change', () => {
-//         if (this.checked) {
-//           this.tasks[i].completed = true;
-//         } else {
-//           this.tasks[i].completed = false;
-//         }
-//         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//       });
-//     }
-//   }
-// }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayTasks);
-
-/***/ }),
-
-/***/ "./src/removeItems.js":
-/*!****************************!*\
-  !*** ./src/removeItems.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var completedIsFalse = function completedIsFalse(task) {
-  return task.completed === false;
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (completedIsFalse);
-
-// import TaskObject from './userInput.js';
-// import completedIsFalse from './removeItems.js';
-
-// class TaskList {
-//   // tasks property will be add using the methods following
-//   constructor() {
-//     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
-//   }
-//   // in this method she added all events that can be done in the userinput
-//   init() {
-//     const addBtn = document.getElementById('addBtn');
-//     addBtn.addEventListener('click', (event) => {
-//       event.preventDefault();
-//       this.addingEventListener();
-//     });
-
-//     document.getElementById('userInput').addEventListener('keypress', (event) => {
-//       if (event.key === 'Enter') {
-//         event.preventDefault();
-//         this.addingEventListener();
-//       }
-//     });
-
-//     const clearBtn = document.getElementById('clearBtn');
-//     clearBtn.addEventListener('click', () => {
-//       this.clearCompleted();
-//     });
-
-//     window.addEventListener('load', () => {
-//       this.renderList();
-//     });
-//   }
-//   // main task of this method is to verify userInput is displayed(not empty) and also the taskes added are rendered
-//   //and when empty it will inject data (atask) using the taskobject class then reset the input for another addition
-
-//   addingEventListener() {
-//     const description = document.getElementById('userInput').value;
-//     if (description !== '') {
-//       const aTask = new TaskObject(description, this.tasks.length); //inject data into the taskobject class
-//       this.addTask(aTask);
-//       this.renderList();
-//       document.getElementById('userInput').value = '';
-//     }
-//   }
-
-//   addTask(aTask) {
-//     this.tasks.push(aTask);
-//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//   }
-
-//   deleteTask(index) {
-//     this.tasks.splice(index, 1);
-//     this.renderList();
-//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//   }
-
-//   clearCompleted() {
-//     this.tasks = this.tasks.filter(completedIsFalse);
-//     this.renderList();
-//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//   }
-
-//   renderList() {
-//     const ul = document.querySelector('ul');
-//     ul.innerHTML = '';
-
-//     const sortedArr = [...this.tasks];
-//     sortedArr.sort((a, b) => a.index - b.index);
-
-//     for (let i = 0; i < sortedArr.length; i += 1) {
-//       this.tasks[i].index = i + 1;
-//       const input = document.querySelector('#userInput');
-//       const addedTasks = document.querySelector('ul');
-//       addedTasks.innerHTML = '';
-//       const listItem = document.createElement('li');
-//       listItem.innerHTML = `
-//       <input type="checkbox" id="checkB" />
-//       <input class="listItems" type="text" readonly id=" />
-//       <img id="dotsImg" src="./assets/three-dots.png" alt="" />
-//       `;
-//       //   const userInput = document.querySelector('#checkB');
-
-//       // if (this.tasks[i].completed === true) {
-//       //   checkBox=true;
-//       // }
-
-//       //   const optionImg = document.querySelector('#dotsImg');
-//       //   optionImg.src = Drag;
-//       //   moveBtn.appendChild(optionImg);
-
-//       //   const deleteIcon = document.createElement('img');
-//       //   deleteIcon.src = Bin;
-//       //   deleteBtn.appendChild(deleteIcon);
-//       //   deleteBtn.classList.add('hidden');
-
-//       //   deleteBtn.addEventListener('click', () => {
-//       //     this.deleteTask(i);
-//       //   });
-
-//       addedTasks.appendChild(listItem);
-
-//       // const label = document.createElement('label');
-//       //   const input = document.createElement('input');
-
-//       //   const checkmark = document.createElement('span');
-//       //   checkmark.classList.add('checkmark');
-//       //   if (this.tasks[i].completed === true) {
-//       //     checkmark.classList.add('checked');
-//       //   }
-
-//       //   const moveBtn = document.createElement('button');
-//       //   const deleteBtn = document.createElement('button');
 
 //       input.addEventListener('click', () => {
 //         document.querySelectorAll('li').forEach((element) => {
@@ -284,27 +123,17 @@ var completedIsFalse = function completedIsFalse(task) {
 //         document.querySelectorAll('li').forEach((element) => {
 //           element.classList.remove('onEdit');
 //         });
-//         // setTimeout(() => {
-//         //     dotsImg.classList.add('hidden');
-//         //   moveBtn.classList.remove('hidden');
-//         // }, 200);
 //       });
-
-//       //   li.appendChild(checkmark);
-//       //   li.appendChild(input);
-
 //       input.value = `${sortedArr[i].description}`;
 //       input.addEventListener('keyup', () => {
 //         sortedArr[i].description = input.value;
 //         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
 //       });
-//       //   li.appendChild(deleteBtn);
-//       //   li.appendChild(moveBtn);
+
 //       addedTasks.appendChild(listItem);
 //       const checkBox = document.querySelector('#checkB');
 
 //       checkBox.addEventListener('change', () => {
-//         // checkBox.classList.toggle('checked');
 //         if (this.checked) {
 //           this.tasks[i].completed = true;
 //         } else {
@@ -316,208 +145,7 @@ var completedIsFalse = function completedIsFalse(task) {
 //   }
 // }
 
-// export default TaskList;
-
-// import TaskObject from './TaskObject.js';
-// import completedIsFalse from './CompletedFilter.js';
-// import Drag from './drag-handle-minor-svgrepo-com.svg';
-// import Bin from './bin-svgrepo-com.svg';
-
-// class TaskList {
-// // tasks property will be add using the methods following
-//   constructor() {
-//     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
-//   }
-// // in this method she added all events that can be done in the userinput 
-//   init() {
-
-//     const addButton = document.getElementById('add-btn');
-//     addButton.addEventListener('click', (event) => {
-//       event.preventDefault();
-//       this.addingEventListener();
-//     });
-
-//     document.getElementById('userInput').addEventListener('keypress', (event) => {
-//       if (event.key === 'Enter') {
-//         event.preventDefault();
-//         this.addingEventListener();
-//       }
-//     });
-
-//     const clearBtn = document.getElementById('clear');
-//     clearBtn.addEventListener('click', () => {
-//       this.clearCompleted();
-//     });
-
-//     window.addEventListener('load', () => {
-//       this.renderList();
-//     });
-//   }
-// // main task of this method is to verify userInput is displayed(not empty) and also the taskes added are rendered
-// //and when empty it will inject data (atask) using the taskobject class then reset the input for another addition
-
-//   addingEventListener() {
-//     const description = document.getElementById('userInput').value;
-//     if (description !== '') {
-//       const aTask = new TaskObject(description, this.tasks.length);//inject data into the taskobject class
-//       this.addTask(aTask);
-//       this.renderList();
-//       document.getElementById('userInput').value = '';
-//     }
-//   }
-
-//   addTask(aTask) {
-//     this.tasks.push(aTask);
-//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//   }
-
-//   deleteTask(index) {
-//     this.tasks.splice(index, 1);
-//     this.renderList();
-//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//   }
-
-//   clearCompleted() {
-//     this.tasks = this.tasks.filter(completedIsFalse);
-//     this.renderList();
-//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//   }
-
-//   renderList() {
-//     const ul = document.querySelector('ul');
-//     ul.innerHTML = '';
-
-//     const sortedArr = [...this.tasks];
-//     sortedArr.sort((a, b) => a.index - b.index);
-
-//     for (let i = 0; i < sortedArr.length; i += 1) {
-//       this.tasks[i].index = i + 1;
-//       const addedTasks = document.createElement('ul');
-//       addedTasks.innerHTML='';
-//       const listItem = document.createElement('li');
-//       listItem.innerHTML=`
-//       <input type="checkbox" id="checkB" />
-//       <input class="listItems" type="text" readonly />
-//       <img id="dotsImg" src="./assets/three-dots.png" alt="" />
-//       `
-//       addedTasks.appendChild(listItem);
-
-//       // const label = document.createElement('label');
-//       const input = document.createElement('input');
-
-//       const checkmark = document.createElement('span');
-//       checkmark.classList.add('checkmark');
-//       if (this.tasks[i].completed === true) {
-//         checkmark.classList.add('checked');
-//       }
-
-//       const moveBtn = document.createElement('button');
-//       const deleteBtn = document.createElement('button');
-
-//       const moveIcon = document.createElement('img');
-//       moveIcon.src = Drag;
-//       moveBtn.appendChild(moveIcon);
-
-//       const deleteIcon = document.createElement('img');
-//       deleteIcon.src = Bin;
-//       deleteBtn.appendChild(deleteIcon);
-//       deleteBtn.classList.add('hidden');
-
-//       deleteBtn.addEventListener('click', () => {
-//         this.deleteTask(i);
-//       });
-
-//       input.addEventListener('click', () => {
-//         document.querySelectorAll('li').forEach((element) => {
-//           element.classList.remove('on-edit');
-//         });
-//         li.classList.add('on-edit');
-//         checkmark.classList.add('darken');
-//         moveBtn.classList.add('hidden');
-//         deleteBtn.classList.remove('hidden');
-//       });
-
-//       input.addEventListener('blur', () => {
-//         document.querySelectorAll('li').forEach((element) => {
-//           element.classList.remove('on-edit');
-//         });
-//         setTimeout(() => {
-//           deleteBtn.classList.add('hidden');
-//           moveBtn.classList.remove('hidden');
-//         }, 500);
-//       });
-
-//       li.appendChild(checkmark);
-//       li.appendChild(input);
-//       input.value = `${sortedArr[i].description}`;
-//       input.addEventListener('keyup', () => {
-//         sortedArr[i].description = input.value;
-//         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//       });
-//       li.appendChild(deleteBtn);
-//       li.appendChild(moveBtn);
-//       ul.appendChild(li);
-
-//       checkmark.addEventListener('click', () => {
-//         checkmark.classList.toggle('checked');
-//         if (checkmark.classList.contains('checked')) {
-//           this.tasks[i].completed = true;
-//         } else {
-//           this.tasks[i].completed = false;
-//         }
-//         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-//       });
-//     }
-//   }
-// }
-
-// export default TaskList;
-
-/***/ }),
-
-/***/ "./src/userInput.js":
-/*!**************************!*\
-  !*** ./src/userInput.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   TaskObject: () => (/* binding */ TaskObject),
-/* harmony export */   taskarr: () => (/* binding */ taskarr)
-/* harmony export */ });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-var taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
-var TaskObject = /*#__PURE__*/function () {
-  function TaskObject(description, index) {
-    _classCallCheck(this, TaskObject);
-    this.description = description;
-    this.completed = false;
-    this.index = index;
-  }
-  _createClass(TaskObject, [{
-    key: "addObject",
-    value: function addObject(description, index) {
-      var newTask = new TaskObject(description, index + 1);
-      taskarr.unshift(newTask);
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
-    }
-  }, {
-    key: "removeObject",
-    value: function removeObject(description, index) {
-      var newTask = new TaskObject(description, index - 1);
-      taskarr.splice(newTask);
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
-    }
-  }]);
-  return TaskObject;
-}();
-
+// export default DisplayTasks;
 
 /***/ }),
 
@@ -527,6 +155,7 @@ var TaskObject = /*#__PURE__*/function () {
   \****************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -550,26 +179,17 @@ ___CSS_LOADER_EXPORT___.push([module.id, `* {
 body {
   background-color: #2fa8cc;
   font-family: "Roboto", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 20px;
-  font-size: 14px;
 }
 
-img {
-  cursor: pointer;
-  transition: all 0.5s;
-}
-
-#formContainer {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  justify-content: center;
-  align-items: center;
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 5px;
+  text-align: left;
+  margin: 15rem 10rem;
 }
 
 div, li {
@@ -582,11 +202,13 @@ div, li {
   border: 0;
   padding: 0.1rem;
   align-self: stretch;
+  gap: 0.2rem;
 }
 
-li {
-  justify-content: center;
+img {
+  height: 2rem;
 }
+
 li .onEdit {
   background-color: rgb(253, 227, 178);
 }
@@ -614,21 +236,8 @@ input {
   border-radius: 4px;
   width: 5vw;
   align-self: center;
-}
-
-.container {
-  background-color: #f4f4f4;
-  border-radius: 4px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px 5px;
-  text-align: left;
-  max-width: 100%;
-  width: 800px;
-}
-
-img {
-  height: 1.5rem;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.5s;
 }
 
 #recyclImg {
@@ -657,18 +266,17 @@ img {
   background-color: #2fa8cc;
   color: #f4f4f4;
   border: 0;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
   cursor: pointer;
   text-align: center;
-  width: 100%;
 }
 #clearBtn:active {
   transform: scale(0.98);
 }
 #clearBtn:focus {
   outline: 0;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EAEI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;ADKA;EACI,yBAVY;EAWZ,iCAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;EACA,SAAA;EACA,aAAA;EACA,eAAA;ACFJ;;ADKA;EACI,eAAA;EACA,oBAAA;ACFJ;;AApBA;EDyBI,aAAA;EACA,sBAAA;ECxBA,WAAA;EACA,uBAAA;EACA,mBAAA;AAwBJ;;AAvBA;EDuBI,aAAA;EACA,mBAAA;ECtBA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;AA2BJ;;AA1BA;EACI,uBAAA;AA6BJ;AA5BI;EACI,oCAAA;AA8BR;;AA5BI;EDiDA,YAAA;EACA,iBAAA;EACA,gCAxEQ;EAyER,gBAAA;EACA,yBAAA;ACjBJ;AAlCI;EACI,WAAA;AAoCR;;AAnCA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAsCJ;;AApCA;EACI,kBAAA;EACA,UAAA;EACA,kBAAA;AAuCJ;;AAtCA;EACI,yBDnCc;ECoCd,kBAAA;EACA,wEDpCS;ECqCT,iBAAA;EACA,gBAAA;EACA,eAAA;EACA,YAAA;AAyCJ;;AAxCA;EACI,cAAA;EACA,oBAAA;AA2CJ;;AA1CA;EACI,YAAA;AA6CJ;AA5CI;EACI,UAAA;AA8CR;;AA7CA;EACI,UAAA;AAgDJ;AA9CI;EAEI,qBAAA;EACA,4BAAA;AA+CR;;AA9CA;EDzBI,oBAAA;EACA,kBAAA;EACA,gCAnCQ;EAoCR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAvCY;EAwCZ,cAvCc;EAwCd,SAAA;EACA,uEAAA;EACA,aAAA;EACA,eAAA;EACA,kBAAA;ECcA,WAAA;AA8DJ;AA5DI;EACI,sBAAA;AA8DR;AA5DI;EACI,UAAA;AA8DR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    // text-decoration: none !important\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    display: flex\r\n    flex-direction: column\r\n    align-items: center\r\n    justify-content: center\r\n    margin: 0\r\n    padding: 20px\r\n    font-size: 14px\r\n\r\n// mixings\r\nimg\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n#formContainer\r\n    @include columnFlex\r\n    gap: .2rem\r\n    justify-content: center\r\n    align-items: center\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\nli\r\n    justify-content: center\r\n    .onEdit\r\n        background-color: rgb(253, 227, 178)\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#checkB\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n.container\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    max-width: 100%\r\n    width: 800px\r\nimg\r\n    height: 1.5rem\r\n    transition: all 0.2s\r\n#recyclImg\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        // background-image: url(../assets/trash-can.png)\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearBtn\r\n    @include button\r\n    width: 100%\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACFJ;;AAFA;EACI,yBDHY;ECIZ,iCAAA;AAKJ;;AAHA;EDKI,aAAA;EACA,sBAAA;ECJA,yBDPc;ECQd,kBAAA;EACA,wEDRS;ECST,iBAAA;EACA,gBAAA;EACA,mBAAA;AAOJ;;AANA;EDAI,aAAA;EACA,mBAAA;ECCA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,WAAA;AAUJ;;AARA;EAEI,YAAA;AAUJ;;AARI;EACI,oCAAA;AAWR;;AATI;EDsBA,YAAA;EACA,iBAAA;EACA,gCAzDQ;EA0DR,gBAAA;EACA,yBAAA;ACTJ;AAfI;EACI,WAAA;AAiBR;;AAhBA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAmBJ;;AAjBA;EACI,kBAAA;EACA,UAAA;EACA,kBAAA;EAEA,eAAA;EACA,oBAAA;AAmBJ;;AAjBA;EACI,YAAA;AAoBJ;AAnBI;EACI,UAAA;AAqBR;;AApBA;EACI,UAAA;AAuBJ;AArBI;EAEI,qBAAA;EACA,4BAAA;AAsBR;;AArBA;ED7CI,oBAAA;EACA,kBAAA;EACA,gCApBQ;EAqBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAxBY;EAyBZ,cAxBc;EAyBd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;ACsEJ;AAnCI;EACI,sBAAA;AAqCR;AAnCI;EACI,UAAA;AAqCR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\nbody\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // height: 100vh\r\n.container\r\n    @include columnFlex\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    margin: 15rem 10rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\n    gap: .2rem\r\n\r\nimg\r\n\r\n    height: 2rem\r\nli\r\n    .onEdit\r\n        background-color: rgb(253, 227, 178)\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#checkB\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        // background-image: url(../assets/trash-can.png)\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -681,6 +289,7 @@ img {
   \*****************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /*
@@ -775,6 +384,7 @@ module.exports = function (cssWithMappingToString) {
   \************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 module.exports = function (item) {
@@ -800,6 +410,7 @@ module.exports = function (item) {
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -814,6 +425,7 @@ __webpack_require__.r(__webpack_exports__);
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -828,6 +440,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -842,6 +455,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -856,6 +470,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -910,6 +525,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var stylesInDOM = [];
@@ -1003,6 +619,7 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var memo = {};
@@ -1046,6 +663,7 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -1065,6 +683,7 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -1084,6 +703,7 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -1154,6 +774,7 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -1245,17 +866,16 @@ module.exports = styleTagTransform;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   dotsImg: () => (/* binding */ dotsImg),
 /* harmony export */   enterImg: () => (/* binding */ enterImg),
-/* harmony export */   refreshImg: () => (/* binding */ refreshImg),
-/* harmony export */   tarshCanImg: () => (/* binding */ tarshCanImg)
+/* harmony export */   refreshImg: () => (/* binding */ refreshImg)
 /* harmony export */ });
 /* harmony import */ var _styles_sass_main_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/sass/main.sass */ "./src/styles/sass/main.sass");
 /* harmony import */ var _assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/refresh.png */ "./src/assets/refresh.png");
@@ -1263,6 +883,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_enter_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/enter.png */ "./src/assets/enter.png");
 /* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/trash-can.png */ "./src/assets/trash-can.png");
 /* harmony import */ var _displayList_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./displayList.js */ "./src/displayList.js");
+/* harmony import */ var _displayList_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_displayList_js__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -1270,14 +892,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var refreshImg = _assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__["default"];
 var dotsImg = _assets_three_dots_png__WEBPACK_IMPORTED_MODULE_2__["default"];
-var tarshCanImg = _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_4__["default"];
-
-var taskList = new TaskList();
-taskList.init();
+var trashCanImg = _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_4__["default"];
+var taskList = new (_displayList_js__WEBPACK_IMPORTED_MODULE_5___default())();
 var enterImg = _assets_enter_png__WEBPACK_IMPORTED_MODULE_3__["default"];
 
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle8515c8fa13b5a4e30483.js.map
+//# sourceMappingURL=bundlefd25188dc225a97a3821.js.map

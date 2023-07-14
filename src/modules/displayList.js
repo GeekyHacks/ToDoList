@@ -1,29 +1,4 @@
-// import { TaskObject, taskarr } from './userInput.js';
-// // import completedIsFalse from './removeItems.js';
 
-// const addBtn = document.getElementById('addBtn');
-
-// // TaskObject;
-// class DisplayTasks {
-//   constructor() {
-//     this.array = taskarr;
-//   }
-
-//   addTask() {
-//     addBtn.addEventListener('click', (event) => {
-//       event.preventDefault();
-//       const addedTasks = document.querySelector('ul');
-//       const listItem = document.createElement('li');
-
-//       listItem.innerHTML = `
-//               <input type="checkbox" id="checkB" />
-//               <p class="listItems" id="addItem" />${this.array.description}</p>
-//               <img id="dotsImg" src="./assets/three-dots.png" alt="" />
-//               `;
-//       addedTasks.appendChild(listItem);
-//     });
-//   }
-// }
 
 // const input = document.querySelector('#userInput');
 
@@ -94,20 +69,20 @@
 //       this.tasks[i].index = i + 1;
 //       const input = document.querySelector('#userInput');
 //       const addedTasks = document.querySelector('ul');
-//       const listItem = document.createElement('li');
+//       const newTask = document.createElement('li');
 
-//       listItem.innerHTML = `
+//       newTask.innerHTML = `
 //       <input type="checkbox" id="checkB" />
-//       <p class="listItems" id="addItem" />${this.tasks[i].description}</p>
+//       <p class="newTasks" id="addItem" />${this.tasks[i].description}</p>
 //       <img id="dotsImg" src="./assets/three-dots.png" alt="" />
 //       `;
-//       addedTasks.appendChild(listItem);
+//       addedTasks.appendChild(newTask);
 
 //       input.addEventListener('click', () => {
 //         document.querySelectorAll('li').forEach((element) => {
 //           element.classList.remove('onEdit');
 //         });
-//         listItem.classList.add('onEdit');
+//         newTask.classList.add('onEdit');
 //       });
 
 //       input.addEventListener('blur', () => {
@@ -121,7 +96,7 @@
 //         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
 //       });
 
-//       addedTasks.appendChild(listItem);
+//       addedTasks.appendChild(newTask);
 //       const checkBox = document.querySelector('#checkB');
 
 //       checkBox.addEventListener('change', () => {
@@ -136,4 +111,4 @@
 //   }
 // }
 
-// export default DisplayTasks;
+export default DisplayTasks;
