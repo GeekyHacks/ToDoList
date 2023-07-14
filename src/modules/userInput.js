@@ -1,4 +1,12 @@
-const taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
+const taskarr = [
+  {
+    description: 'First task',
+    completed: false,
+    index: index,
+  },
+];
+
+// const taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
 class TaskObject {
   constructor(description, index) {
     this.description = description;
@@ -11,14 +19,6 @@ class TaskObject {
     taskarr.unshift(newTask);
     localStorage.setItem('taskarr', JSON.stringify(taskarr));
   }
-
-}
-
-
-static removeObject(task) {
-  taskarr= taskarr.filter((b) => b !==task);
-  localStorage.setItem('taskarr', JSON.stringify(taskarr));
 }
 
 export { TaskObject, taskarr };
-
