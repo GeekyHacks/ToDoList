@@ -1,4 +1,3 @@
-
 export default (taskarr, index) => {
   let i = index;
 

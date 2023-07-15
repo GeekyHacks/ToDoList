@@ -1,4 +1,3 @@
-
 import { taskarr } from './addTask.js';
 
 const tasksList = document.querySelector('#tasksList');

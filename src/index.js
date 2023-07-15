@@ -43,4 +43,3 @@ clearAllBtn.addEventListener('click', () => {
   window.localStorage.clear();
   reloading();
 });
-
