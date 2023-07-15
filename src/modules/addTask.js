@@ -1,25 +1,16 @@
-// export default (taskDescription, tasks) => {
-//   const newTask = {
-//     description: taskDescription,
-//     completed: false,
-//     index: tasks.length,
-//   };
-//   tasks.push(newTask);
+import { TaskObject } from './userInput.js';
+import { renderList, tasksList } from './displayList.js';
 
-//   return tasks;
-// };
+export const taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
+// const input = document.getElementById('userIput');
+//   description="";
 
-//  addtask =(taskDescription, tasks) => {
-//     const newTask = {
-//       description: taskDescription,
-//       completed: false,
-//       index: tasks.length,
-//     };
-//     tasks.push(newTask);
+export const addTask = (description, index) => {
+ 
+  const newTask = new TaskObject(description, index + 1);
+  taskarr.push(newTask);
+  renderList();
+  localStorage.setItem('taskarr', JSON.stringify(taskarr));
   
-//     return tasks;
-//   };
-
-// let Ab = new addtask('asdasdadsa',1);
-// let Bb = new addtask('aa',1);
-// let Cb = new addtask('asdasdaaadadsa',1);
+};
+// console.log(addTask)

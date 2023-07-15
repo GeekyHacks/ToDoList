@@ -2,6 +2,33 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/addTask.js":
+/*!********************************!*\
+  !*** ./src/modules/addTask.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addTask: () => (/* binding */ addTask),
+/* harmony export */   taskarr: () => (/* binding */ taskarr)
+/* harmony export */ });
+/* harmony import */ var _userInput_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInput.js */ "./src/modules/userInput.js");
+
+var taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
+// const input = document.getElementById('userIput');
+//   description="";
+var addTask = function addTask(description, index) {
+  var newTask = new _userInput_js__WEBPACK_IMPORTED_MODULE_0__.TaskObject(description, index + 1);
+  console.log(newTask);
+  taskarr.push(newTask);
+  localStorage.setItem('taskarr', JSON.stringify(taskarr));
+  console.log(taskarr);
+  description = '';
+};
+
+/***/ }),
+
 /***/ "./src/modules/displayList.js":
 /*!************************************!*\
   !*** ./src/modules/displayList.js ***!
@@ -10,132 +37,49 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   renderList: () => (/* binding */ renderList)
+/* harmony export */ });
+/* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
+
+// const dots = "./assets/dots.png";
+var tasksList = document.querySelector('#tasksList');
+var renderList = function renderList() {
+  tasksList.innerHTML = '';
+  for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i++) {
+    // const element = array[i];
+    var newTask = document.createElement('li');
+    newTask.classList.add('newTask');
+    newTask.innerHTML = "\n      <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed ? 'checked' : 'unchecked', " />\n      <p class=\"newTasks\" id=\"addItem\" />").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "</p>\n      <img id=\"dotsImg\" src=\"./assets/dots.png\" alt=\"\" />\n      ");
+    tasksList.appendChild(newTask);
+  }
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/userInput.js":
+/*!**********************************!*\
+  !*** ./src/modules/userInput.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TaskObject: () => (/* binding */ TaskObject)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-var input = document.querySelector('#userInput');
-var TaskList = /*#__PURE__*/function () {
-  // tasks property will be add using the methods following
-  function TaskList() {
-    _classCallCheck(this, TaskList);
-    this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
-  }
-  _createClass(TaskList, [{
-    key: "init",
-    value: function init() {
-      var _this = this;
-      var addBtn = document.getElementById('addBtn');
-      addBtn.addEventListener('click', function (event) {
-        event.preventDefault();
-        _this.addingEventListener();
-      });
-      document.getElementById('userInput').addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          _this.addingEventListener();
-        }
-      });
-      var clearBtn = document.getElementById('clearBtn');
-      clearBtn.addEventListener('click', function () {
-        _this.clearCompleted();
-      });
-      window.addEventListener('load', function () {
-        _this.renderList();
-      });
-    }
-  }, {
-    key: "addingEventListener",
-    value: function addingEventListener() {
-      var description = document.getElementById('userInput').value;
-      if (description !== '') {
-        var aTask = new TaskObject(description, this.tasks.length);
-        this.renderList();
-        document.getElementById('userInput').value = '';
-      }
-    }
-  }, {
-    key: "addTask",
-    value: function addTask(aTask) {
-      this.tasks.push(aTask);
-      localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-    }
-  }, {
-    key: "deleteTask",
-    value: function deleteTask(index) {
-      this.tasks.splice(index, 1);
-      this.renderList();
-      localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-    }
-  }, {
-    key: "clearCompleted",
-    value: function clearCompleted() {
-      this.tasks = this.tasks.filter(completedIsFalse);
-      this.renderList();
-      localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
-    }
-  }, {
-    key: "renderList",
-    value: function renderList() {
-      var _this2 = this;
-      var ul = document.querySelector('ul');
-      ul.innerHTML = '';
-      var sortedArr = _toConsumableArray(this.tasks);
-      sortedArr.sort(function (a, b) {
-        return a.index - b.index;
-      });
-      var _loop = function _loop(i) {
-        _this2.tasks[i].index = i + 1;
-        var input = document.querySelector('#userInput');
-        var addedTasks = document.querySelector('ul');
-        var newTask = document.createElement('li');
-        newTask.innerHTML = "\n      <input type=\"checkbox\" id=\"checkB\" />\n      <p class=\"newTasks\" id=\"addItem\" />".concat(_this2.tasks[i].description, "</p>\n      <img id=\"dotsImg\" src=\"./assets/three-dots.png\" alt=\"\" />\n      ");
-        addedTasks.appendChild(newTask);
-        input.addEventListener('click', function () {
-          document.querySelectorAll('li').forEach(function (element) {
-            element.classList.remove('onEdit');
-          });
-          newTask.classList.add('onEdit');
-        });
-        input.addEventListener('blur', function () {
-          document.querySelectorAll('li').forEach(function (element) {
-            element.classList.remove('onEdit');
-          });
-        });
-        input.value = "".concat(sortedArr[i].description);
-        input.addEventListener('keyup', function () {
-          sortedArr[i].description = input.value;
-          localStorage.setItem('ToDolist', JSON.stringify(_this2.tasks));
-        });
-        addedTasks.appendChild(newTask);
-        var checkBox = document.querySelector('#checkB');
-        checkBox.addEventListener('change', function () {
-          if (_this2.checked) {
-            _this2.tasks[i].completed = true;
-          } else {
-            _this2.tasks[i].completed = false;
-          }
-          localStorage.setItem('ToDolist', JSON.stringify(_this2.tasks));
-        });
-      };
-      for (var i = 0; i < sortedArr.length; i += 1) {
-        _loop(i);
-      }
-    }
-  }]);
-  return TaskList;
-}();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayTasks);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var TaskObject = /*#__PURE__*/_createClass(function TaskObject(description, index) {
+  _classCallCheck(this, TaskObject);
+  this.description = description;
+  this.completed = false;
+  this.index = index;
+});
+
 
 /***/ }),
 
@@ -250,7 +194,7 @@ input {
   background-repeat: no-repeat;
 }
 
-#clearBtn {
+#clearAllBtn {
   transition: all 0.5s;
   border-radius: 2px;
   font-family: "Inter", sans-serif;
@@ -266,12 +210,12 @@ input {
   cursor: pointer;
   text-align: center;
 }
-#clearBtn:active {
+#clearAllBtn:active {
   transform: scale(0.98);
 }
-#clearBtn:focus {
+#clearAllBtn:focus {
   outline: 0;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACFJ;;AAFA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,aAAA;AAMJ;;AALA;EDEI,aAAA;EACA,sBAAA;ECDA,qBAAA;EAEA,yBDZc;ECad,kBAAA;EACA,wEDbS;ECcT,iBAAA;EACA,gBAAA;EACA,UAAA;AAQJ;;AAPA;EDLI,aAAA;EACA,mBAAA;ECMA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,WAAA;AAWJ;;AATA;EAEI,YAAA;AAWJ;;AATI;EACI,oCAAA;AAYR;;AAVI;EDiBA,YAAA;EACA,iBAAA;EACA,gCAzDQ;EA0DR,gBAAA;EACA,yBAAA;ACHJ;AAhBI;EACI,WAAA;AAkBR;;AAjBA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAoBJ;;AAlBA;EACI,kBAAA;EACA,UAAA;EACA,kBAAA;EAEA,eAAA;EACA,oBAAA;AAoBJ;;AAlBA;EACI,YAAA;AAqBJ;AApBI;EACI,UAAA;AAsBR;;AArBA;EACI,UAAA;AAwBJ;AAtBI;EAEI,qBAAA;EACA,4BAAA;AAuBR;;AAtBA;EDlDI,oBAAA;EACA,kBAAA;EACA,gCApBQ;EAqBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAxBY;EAyBZ,cAxBc;EAyBd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC4EJ;AApCI;EACI,sBAAA;AAsCR;AApCI;EACI,UAAA;AAsCR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    height: 100vh\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\n    gap: .2rem\r\n\r\nimg\r\n\r\n    height: 2rem\r\nli\r\n    .onEdit\r\n        background-color: rgb(253, 227, 178)\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#checkB\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        // background-image: url(../assets/trash-can.png)\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACFJ;;AAFA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,aAAA;AAMJ;;AALA;EDEI,aAAA;EACA,sBAAA;ECDA,qBAAA;EAEA,yBDZc;ECad,kBAAA;EACA,wEDbS;ECcT,iBAAA;EACA,gBAAA;EACA,UAAA;AAQJ;;AAPA;EDLI,aAAA;EACA,mBAAA;ECMA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,WAAA;AAWJ;;AATA;EAEI,YAAA;AAWJ;;AATI;EACI,oCAAA;AAYR;;AAVI;EDiBA,YAAA;EACA,iBAAA;EACA,gCAzDQ;EA0DR,gBAAA;EACA,yBAAA;ACHJ;AAhBI;EACI,WAAA;AAkBR;;AAjBA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAoBJ;;AAlBA;EACI,kBAAA;EACA,UAAA;EACA,kBAAA;EAEA,eAAA;EACA,oBAAA;AAoBJ;;AAlBA;EACI,YAAA;AAqBJ;AApBI;EACI,UAAA;AAsBR;;AArBA;EACI,UAAA;AAwBJ;AAtBI;EAEI,qBAAA;EACA,4BAAA;AAuBR;;AAtBA;EDlDI,oBAAA;EACA,kBAAA;EACA,gCApBQ;EAqBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAxBY;EAyBZ,cAxBc;EAyBd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC4EJ;AApCI;EACI,sBAAA;AAsCR;AApCI;EACI,UAAA;AAsCR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    height: 100vh\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\n    gap: .2rem\r\n\r\nimg\r\n\r\n    height: 2rem\r\nli\r\n    .onEdit\r\n        background-color: rgb(253, 227, 178)\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#checkB\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        // background-image: url(../assets/trash-can.png)\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -425,17 +369,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/assets/trash-can.png":
-/*!**********************************!*\
-  !*** ./src/assets/trash-can.png ***!
-  \**********************************/
+/***/ "./src/assets/three-dots.png":
+/*!***********************************!*\
+  !*** ./src/assets/three-dots.png ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/trash-can.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/three-dots.png");
 
 /***/ }),
 
@@ -840,28 +784,43 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   enterImg: () => (/* binding */ enterImg),
-/* harmony export */   refreshImg: () => (/* binding */ refreshImg)
-/* harmony export */ });
 /* harmony import */ var _styles_sass_main_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/sass/main.sass */ "./src/styles/sass/main.sass");
 /* harmony import */ var _assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/refresh.png */ "./src/assets/refresh.png");
 /* harmony import */ var _assets_enter_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/enter.png */ "./src/assets/enter.png");
-/* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/trash-can.png */ "./src/assets/trash-can.png");
+/* harmony import */ var _modules_addTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/addTask */ "./src/modules/addTask.js");
 /* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
+/* harmony import */ var _assets_three_dots_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/three-dots.png */ "./src/assets/three-dots.png");
 
 
 
 
 
-var refreshImg = _assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__["default"];
-var dotsImg = dots;
-var trashCanImg = _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_3__["default"];
-(0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__["default"])();
-var enterImg = _assets_enter_png__WEBPACK_IMPORTED_MODULE_2__["default"];
 
+var addBtn = document.querySelector('#addBtn');
+var clearAllBtn = document.querySelector('#clearAllBtn');
+_assets_enter_png__WEBPACK_IMPORTED_MODULE_2__["default"];
+_assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__["default"];
+_assets_three_dots_png__WEBPACK_IMPORTED_MODULE_5__["default"];
+addBtn.addEventListener('click', function (event) {
+  event.preventDefault();
+  var description = userInput.value;
+  var index = _modules_addTask__WEBPACK_IMPORTED_MODULE_3__.taskarr.length;
+  if (description === '') {
+    return null;
+  }
+  (0,_modules_addTask__WEBPACK_IMPORTED_MODULE_3__.addTask)(description, index);
+  console.log(description);
+  console.log(index);
+  //   document.getElementById('userIput').value = '';
+});
+
+(0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__.renderList)();
+// this will clear all localstorage elements too, just temproary
+clearAllBtn.addEventListener('click', function () {
+  return window.localStorage.clear();
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle9279216c17856689672f.js.map
+//# sourceMappingURL=bundle1e0d15d4fe6f98e776f0.js.map

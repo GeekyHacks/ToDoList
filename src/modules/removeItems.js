@@ -1,14 +1,23 @@
-// const completedIsFalse = (task) => task.completed === false;
+// import trashCan from './assets/trash-can.png';
+// import DisplayTasks from './modules/displayList.js';
+// const trashCanImg = trashCan;
+import { renderList, tasksList } from './displayList.js';
+import { taskarr } from './addTask.js';
+// const completedTask = (task) => task.completed === false;
 
-// export default completedIsFalse;
+const removeTask = (taskarr, index) => {
+  let i = index;
 
-// export default (tasks, index) => {
-//   tasks.splice(index, 1);
-//   let i = index;
-//   while (i < tasks.length) {
-//     tasks[i].index = i;
-//     i += 1;
-//   }
+  while (i < taskarr.length) {
+    taskarr[i].index = i;
 
-//   return tasks;
-// };
+    i += 1;
+    taskarr.splice(index, 1);
+  }
+  localStorage.setItem('taskarr', JSON.stringify(taskarr));
+
+  console.log(taskarr);
+  return taskarr;
+};
+
+export { removeTask };
