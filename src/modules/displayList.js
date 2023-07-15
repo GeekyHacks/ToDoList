@@ -1,15 +1,15 @@
 import { taskarr } from './addTask.js';
 
 const tasksList = document.querySelector('#tasksList');
-const renderList = (task) => {
-  for (let i = 0; i < taskarr.length; i++) {
+export default (task) => {
+  for (let i = 0; i < taskarr.length; i += 1) {
     task = document.createElement('li');
     task.classList.add('newTask');
     if (taskarr !== '') {
       task.innerHTML = `
-        <input type="checkbox" id="checkB" ${taskarr[i].completed ? true : false} />
+        <input type="checkbox" id="checkB" ${!!taskarr[i].completed} />
         <p class="newTasks" id="addItem" />${taskarr[i].description}</p>
-        <img id="dotsImg" class="dotsImg" src="./assets/three-dots.png" alt="" />
+        <img id="dotsImg" class="dotsImg" src="../assets/trash-can.png" alt="" />
         `;
       tasksList.appendChild(task);
     }
@@ -19,4 +19,4 @@ const renderList = (task) => {
     }
   }
 };
-export { renderList, tasksList };
+// export default { renderList };

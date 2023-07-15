@@ -1,23 +1,22 @@
 import './styles/sass/main.sass';
-import refreshImg from './assets/refresh.png';
-import enterImg from './assets/enter.png';
-import { addTask, taskarr } from './modules/addTask';
-import { renderList, tasksList } from './modules/displayList.js';
-import dotsImg from './assets/three-dots.png';
-import { removeTask } from './modules/removeItems.js';
+import './assets/refresh.png';
+import './assets/enter.png';
+import './assets/trash-can.png';
+import { addTask, taskarr } from './modules/addTask.js';
+import renderList from './modules/displayList.js';
+import './assets/three-dots.png';
+import removeTask from './modules/removeItems.js';
+
+const userInput = document.querySelector('#userInput');
 const addBtn = document.querySelector('#addBtn');
 const clearAllBtn = document.querySelector('#clearAllBtn');
-
-enterImg;
-refreshImg;
-dotsImg;
 
 // to reload the page this should fix the double rendering issue
 const reloading = () => {
   setInterval(document.location.reload());
 };
 
-addBtn.addEventListener('click', () => {
+addBtn.addEventListener('click', (event) => {
   const description = userInput.value;
   const index = taskarr.length;
   if (description === '') {
@@ -25,6 +24,7 @@ addBtn.addEventListener('click', () => {
   }
   addTask(description, index);
   reloading();
+  return event.preventDefault();
 });
 renderList(taskarr);
 
@@ -39,4 +39,7 @@ document.addEventListener('click', (event) => {
 });
 
 // // this will clear all localstorage elements too, just temproary
-// clearAllBtn.addEventListener('click', () => window.localStorage.clear());
+clearAllBtn.addEventListener('click', () => {
+  window.localStorage.clear();
+  reloading();
+});

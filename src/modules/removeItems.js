@@ -1,11 +1,9 @@
-// import trashCan from './assets/trash-can.png';
 // import DisplayTasks from './modules/displayList.js';
 // const trashCanImg = trashCan;
-import { renderList, tasksList } from './displayList.js';
-import { taskarr } from './addTask.js';
-// const completedTask = (task) => task.completed === false;
+// import { renderList, tasksList } from './displayList.js';
+// import { taskarr } from './addTask.js';
 
-const removeTask = (taskarr, index) => {
+export default (taskarr, index) => {
   let i = index;
 
   while (i < taskarr.length) {
@@ -16,8 +14,5 @@ const removeTask = (taskarr, index) => {
   }
   localStorage.setItem('taskarr', JSON.stringify(taskarr));
 
-  console.log(taskarr);
   return taskarr;
 };
-
-export { removeTask };

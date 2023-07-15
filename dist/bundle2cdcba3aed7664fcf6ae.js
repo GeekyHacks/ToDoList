@@ -15,16 +15,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _userInput_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInput.js */ "./src/modules/userInput.js");
 
+// import { renderList } from './displayList.js';
+
 var taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
-// const input = document.getElementById('userIput');
-//   description="";
 var addTask = function addTask(description, index) {
-  var newTask = new _userInput_js__WEBPACK_IMPORTED_MODULE_0__.TaskObject(description, index + 1);
-  console.log(newTask);
+  var newTask = new _userInput_js__WEBPACK_IMPORTED_MODULE_0__["default"](description, index + 1);
   taskarr.push(newTask);
   localStorage.setItem('taskarr', JSON.stringify(taskarr));
-  console.log(taskarr);
-  description = '';
 };
 
 /***/ }),
@@ -37,23 +34,58 @@ var addTask = function addTask(description, index) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   renderList: () => (/* binding */ renderList)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
 
-// const dots = "./assets/dots.png";
 var tasksList = document.querySelector('#tasksList');
-var renderList = function renderList() {
-  tasksList.innerHTML = '';
-  for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i++) {
-    // const element = array[i];
-    var newTask = document.createElement('li');
-    newTask.classList.add('newTask');
-    newTask.innerHTML = "\n      <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed ? 'checked' : 'unchecked', " />\n      <p class=\"newTasks\" id=\"addItem\" />").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "</p>\n      <img id=\"dotsImg\" src=\"./assets/dots.png\" alt=\"\" />\n      ");
-    tasksList.appendChild(newTask);
+var renderList = function renderList(task) {
+  for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i += 1) {
+    task = document.createElement('li');
+    task.classList.add('newTask');
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr !== '') {
+      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(!!_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <p class=\"newTasks\" id=\"addItem\" />").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "</p>\n        <img id=\"dotsImg\" class=\"dotsImg\" src=\"../assets/trash-can.png\" alt=\"\" />\n        ");
+      tasksList.appendChild(task);
+    }
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr === '') {
+      tasksList.innerHTML = '';
+    }
   }
 };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  renderList: renderList
+});
 
+/***/ }),
+
+/***/ "./src/modules/removeItems.js":
+/*!************************************!*\
+  !*** ./src/modules/removeItems.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// import DisplayTasks from './modules/displayList.js';
+// const trashCanImg = trashCan;
+// import { renderList, tasksList } from './displayList.js';
+// import { taskarr } from './addTask.js';
+
+var removeTask = function removeTask(taskarr, index) {
+  var i = index;
+  while (i < taskarr.length) {
+    taskarr[i].index = i;
+    i += 1;
+    taskarr.splice(index, 1);
+  }
+  localStorage.setItem('taskarr', JSON.stringify(taskarr));
+  return taskarr;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  removeTask: removeTask
+});
 
 /***/ }),
 
@@ -65,7 +97,7 @@ var renderList = function renderList() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   TaskObject: () => (/* binding */ TaskObject)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -79,7 +111,9 @@ var TaskObject = /*#__PURE__*/_createClass(function TaskObject(description, inde
   this.completed = false;
   this.index = index;
 });
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  TaskObject: TaskObject
+});
 
 /***/ }),
 
@@ -116,13 +150,15 @@ body {
   align-items: center;
   background-color: #2fa8cc;
   font-family: "Roboto", sans-serif;
-  height: 100vh;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   justify-items: center;
+  align-items: stretch;
   background-color: #f4f4f4;
   border-radius: 4px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
@@ -215,7 +251,7 @@ input {
 }
 #clearAllBtn:focus {
   outline: 0;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACFJ;;AAFA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,aAAA;AAMJ;;AALA;EDEI,aAAA;EACA,sBAAA;ECDA,qBAAA;EAEA,yBDZc;ECad,kBAAA;EACA,wEDbS;ECcT,iBAAA;EACA,gBAAA;EACA,UAAA;AAQJ;;AAPA;EDLI,aAAA;EACA,mBAAA;ECMA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,WAAA;AAWJ;;AATA;EAEI,YAAA;AAWJ;;AATI;EACI,oCAAA;AAYR;;AAVI;EDiBA,YAAA;EACA,iBAAA;EACA,gCAzDQ;EA0DR,gBAAA;EACA,yBAAA;ACHJ;AAhBI;EACI,WAAA;AAkBR;;AAjBA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAoBJ;;AAlBA;EACI,kBAAA;EACA,UAAA;EACA,kBAAA;EAEA,eAAA;EACA,oBAAA;AAoBJ;;AAlBA;EACI,YAAA;AAqBJ;AApBI;EACI,UAAA;AAsBR;;AArBA;EACI,UAAA;AAwBJ;AAtBI;EAEI,qBAAA;EACA,4BAAA;AAuBR;;AAtBA;EDlDI,oBAAA;EACA,kBAAA;EACA,gCApBQ;EAqBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAxBY;EAyBZ,cAxBc;EAyBd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC4EJ;AApCI;EACI,sBAAA;AAsCR;AApCI;EACI,UAAA;AAsCR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    height: 100vh\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\n    gap: .2rem\r\n\r\nimg\r\n\r\n    height: 2rem\r\nli\r\n    .onEdit\r\n        background-color: rgb(253, 227, 178)\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#checkB\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        // background-image: url(../assets/trash-can.png)\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACFJ;;AAFA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,qBAAA;EACA,qBAAA;AAMJ;;AAJA;EDAI,aAAA;EACA,sBAAA;ECCA,qBAAA;EACA,oBAAA;EACA,yBDdc;ECed,kBAAA;EACA,wEDfS;ECgBT,iBAAA;EACA,gBAAA;EACA,UAAA;AAQJ;;AAPA;EDPI,aAAA;EACA,mBAAA;ECQA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,WAAA;AAWJ;;AATA;EAEI,YAAA;AAWJ;;AATI;EACI,oCAAA;AAYR;;AAVI;EDeA,YAAA;EACA,iBAAA;EACA,gCAzDQ;EA0DR,gBAAA;EACA,yBAAA;ACDJ;AAhBI;EACI,WAAA;AAkBR;;AAjBA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAoBJ;;AAlBA;EACI,kBAAA;EACA,UAAA;EACA,kBAAA;EAEA,eAAA;EACA,oBAAA;AAoBJ;;AAlBA;EACI,YAAA;AAqBJ;AApBI;EACI,UAAA;AAsBR;;AArBA;EACI,UAAA;AAwBJ;AAtBI;EAEI,qBAAA;EACA,4BAAA;AAuBR;;AAtBA;EDpDI,oBAAA;EACA,kBAAA;EACA,gCApBQ;EAqBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAxBY;EAyBZ,cAxBc;EAyBd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC8EJ;AApCI;EACI,sBAAA;AAsCR;AApCI;EACI,UAAA;AAsCR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    // height: 100vh\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\n    gap: .2rem\r\n\r\nimg\r\n\r\n    height: 2rem\r\nli\r\n    .onEdit\r\n        background-color: rgb(253, 227, 178)\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#checkB\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        // background-image: url(../assets/trash-can.png)\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -338,48 +374,6 @@ module.exports = function (item) {
   }
   return [content].join("\n");
 };
-
-/***/ }),
-
-/***/ "./src/assets/enter.png":
-/*!******************************!*\
-  !*** ./src/assets/enter.png ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/enter.png");
-
-/***/ }),
-
-/***/ "./src/assets/refresh.png":
-/*!********************************!*\
-  !*** ./src/assets/refresh.png ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/refresh.png");
-
-/***/ }),
-
-/***/ "./src/assets/three-dots.png":
-/*!***********************************!*\
-  !*** ./src/assets/three-dots.png ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/three-dots.png");
 
 /***/ }),
 
@@ -785,42 +779,57 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_sass_main_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/sass/main.sass */ "./src/styles/sass/main.sass");
-/* harmony import */ var _assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/refresh.png */ "./src/assets/refresh.png");
-/* harmony import */ var _assets_enter_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/enter.png */ "./src/assets/enter.png");
-/* harmony import */ var _modules_addTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/addTask */ "./src/modules/addTask.js");
-/* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
-/* harmony import */ var _assets_three_dots_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/three-dots.png */ "./src/assets/three-dots.png");
+/* harmony import */ var _modules_addTask_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addTask.js */ "./src/modules/addTask.js");
+/* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
+/* harmony import */ var _modules_removeItems_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/removeItems.js */ "./src/modules/removeItems.js");
+
+// import refreshImg from './assets/refresh.png';
+// import enterImg from './assets/enter.png';
+// import trashCan from './assets/trash-can.png';
 
 
+// import dotsImg from './assets/three-dots.png';
 
-
-
-
+var userInput = document.querySelector('#userInput');
 var addBtn = document.querySelector('#addBtn');
 var clearAllBtn = document.querySelector('#clearAllBtn');
-_assets_enter_png__WEBPACK_IMPORTED_MODULE_2__["default"];
-_assets_refresh_png__WEBPACK_IMPORTED_MODULE_1__["default"];
-_assets_three_dots_png__WEBPACK_IMPORTED_MODULE_5__["default"];
+// trashCan;
+// enterImg;
+// refreshImg;
+// dotsImg;
+
+// to reload the page this should fix the double rendering issue
+var reloading = function reloading() {
+  setInterval(document.location.reload());
+};
 addBtn.addEventListener('click', function (event) {
-  event.preventDefault();
   var description = userInput.value;
-  var index = _modules_addTask__WEBPACK_IMPORTED_MODULE_3__.taskarr.length;
+  var index = _modules_addTask_js__WEBPACK_IMPORTED_MODULE_1__.taskarr.length;
   if (description === '') {
     return null;
   }
-  (0,_modules_addTask__WEBPACK_IMPORTED_MODULE_3__.addTask)(description, index);
-  console.log(description);
-  console.log(index);
-  //   document.getElementById('userIput').value = '';
+  (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_1__.addTask)(description, index);
+  reloading();
+  return event.preventDefault();
+});
+(0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_1__.taskarr);
+document.addEventListener('click', function (event) {
+  var removeItem = document.querySelectorAll('.dotsImg');
+  removeItem.forEach(function (icon, index) {
+    if (event.target === icon) {
+      (0,_modules_removeItems_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_1__.taskarr, index);
+      reloading();
+    }
+  });
 });
 
-(0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__.renderList)();
-// this will clear all localstorage elements too, just temproary
+// // this will clear all localstorage elements too, just temproary
 clearAllBtn.addEventListener('click', function () {
-  return window.localStorage.clear();
+  window.localStorage.clear();
+  reloading();
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle1e0d15d4fe6f98e776f0.js.map
+//# sourceMappingURL=bundle2cdcba3aed7664fcf6ae.js.map
