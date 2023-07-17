@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
 @import global
-
+$trashcan: url('../sass/trash-can.png')
 body
     @include columnFlex
     justify-content: center
@@ -24,40 +24,44 @@ div, li
     @include rowFlex
     justify-content: space-between
     align-items: center
-    height: 2.5rem
+    // height: 2.5rem
     border-radius: 4px
     border: 0
-    padding: .1rem
-    align-self: stretch
+    padding: .3rem
     gap: .2rem
 
 img
+    flex: .1
+    height: 1.7rem
 
-    height: 2rem
-li
-    .onEdit
-        background-color: rgb(253, 227, 178)
 div
+    gap: .5rem
     h1
         @include smlInterH3
-    #userInput
-        width: 100%
 input
-    height: 2rem
+    @include smlInterP
     border: 0
     padding: .3rem
     align-self: stretch
-    border-radius: 2px
-
-#checkB
     border-radius: 4px
-    width: 5vw
-    align-self: center
 
+#userInput
+    height: 2rem
+    width: 100%
+
+#addItem
+    flex: .9
+    outline: none
+#checkB
+    flex: .1
+    border-radius: 4px
+    height: 1.4rem
+    align-self: center
     cursor: pointer
     transition: all 0.5s
 
 #recyclImg
+    flex: .1
     opacity: .5
     &:hover
         opacity: 1
@@ -65,7 +69,7 @@ input
     opacity: 7
 
     &::active
-        // background-image: url(../assets/trash-can.png)
+        background-image: $trashcan
         background-size: 100%
         background-repeat: no-repeat
 #clearAllBtn
@@ -76,3 +80,5 @@ input
 
     &:focus
         outline: 0
+.edit-bg
+    background-color: #fffecb
