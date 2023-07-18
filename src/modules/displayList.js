@@ -3,65 +3,40 @@ import { taskarr } from './addTask.js';
 const dots = '../assets/three-dots.png';
 const trashCan = '../assets/trash-can.png';
 const tasksList = document.querySelector('#tasksList');
-
+const listItem = document.querySelectorAll('#newTask');
 export default (task) => {
   for (let i = 0; i < taskarr.length; i += 1) {
     task = document.createElement('li');
     task.classList.add('newTask');
-    if (taskarr !== '') {
+    if (taskarr[i].description !== '') {
       task.innerHTML = `
         <input type="checkbox" id="checkB" ${taskarr[i].completed} />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
         <img id="dotsImg" class="dotsImg" src="${dots}" alt="" />
         `;
       tasksList.appendChild(task);
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
+      // localStorage.setItem("taskarr", JSON.stringify(taskarr));
     }
 
-    if (taskarr === '') {
+    if (taskarr[i].description === '') {
       tasksList.innerHTML = '';
     }
   }
-
   const taskDescription = document.querySelectorAll('#addItem');
   taskDescription.forEach((task, index) => {
     task.addEventListener('click', () => {
-      // taskDescription.value = taskarr[index].description;
-      // const object = taskarr[index];
-      task.readOnly = false;
-      const editTask = taskarr[index].description;
-      console.log('');
-      const taskValue = (taskDescription.value = task.value);
-      const newTask = editTask == taskValue;
-      // const newdescription = task.value;
-
-      // localStorage.setItem('taskarr', JSON.stringify(taskValue))
-      // localStorage.setItem('taskarr', JSON.stringify(object))
-      console.log(newTask);
-      // localStorage.setItem('taskarr', JSON.stringify(taskarr));
+      task.classList.add('edit');
+      // let object = taskarr[index];
     });
-
-    // return taskarr;
+    task.addEventListener('change', () => {
+      task.readOnly = false;
+      task.classList.remove('edit');
+      // let object = taskarr[index];
+    });
+    // the trick is with input
+    task.addEventListener('input', () => {
+      taskarr[index].description = task.value;
+      localStorage.setItem('taskarr', JSON.stringify(taskarr));
+    });
   });
 };
-
-// export default { renderList };
-
-// {
-//   /* <p class="newTasks" id="addItem" />${taskarr[i].description}</p> */
-// }
-
-// const taskDescription = document.querySelectorAll('#addItem');
-// taskDescription.forEach((task, index) => {
-//   task.addEventListener('change', () => {
-
-//     // taskDescription.value = taskarr[index].description;
-//     const editTask = taskarr[index].description;
-//     console.log(editTask);
-//     const taskValue = (taskDescription.value = editTask);
-//     localStorage.setItem('taskarr', JSON.stringify(taskarr));
-//     console.log(taskValue);
-//   });
-
-//   // return taskarr;
-// });
