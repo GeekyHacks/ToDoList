@@ -1,9 +1,10 @@
 import { taskarr } from './addTask.js';
+import update from './update.js';
+export const dots = '../assets/three-dots.png';
+import trash_can from '../assets/trash-can.png';
 
-const dots = '../assets/three-dots.png';
-const trashCan = '../assets/trash-can.png';
-const tasksList = document.querySelector('#tasksList');
-const listItem = document.querySelectorAll('#newTask');
+export const tasksList = document.querySelector('#tasksList');
+
 export default (task) => {
   for (let i = 0; i < taskarr.length; i += 1) {
     task = document.createElement('li');
@@ -12,25 +13,55 @@ export default (task) => {
       task.innerHTML = `
         <input type="checkbox" id="checkB" ${taskarr[i].completed} />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
-        <img id="dotsImg" class="dotsImg" src="${dots}" alt="" />
+        <img class="dotsImg" src="${dots}" alt="" />
+        
         `;
+
+      console.log(task);
+
       tasksList.appendChild(task);
-      // localStorage.setItem("taskarr", JSON.stringify(taskarr));
     }
 
     if (taskarr[i].description === '') {
       tasksList.innerHTML = '';
     }
   }
+
+  // task.addEventListener('click', () => {
+  //   console.log(task);
+  //   const dots_Trash = document.querySelectorAll('.dotsImg');
+  //   console.log(dots_Trash);
+  //   const imgNode = dots_Trash.FirstChild;
+  //   let newTAsk =task.removeChild(dots_Trash);
+  //   tasksList.appendChild(newTAsk);
+  //   console.log(newTAsk);
+
+  //   dots_Trash.forEach((element) => {
+  //     console.log(element);
+  //     // dots_Trash.getAttribute('src');
+  //     let currntSrc = dots_Trash.getAttribute('src');
+  //     console.log(currntSrc);
+  //   });
+  //   task.removeChild(src);
+  // });
+
   const taskDescription = document.querySelectorAll('#addItem');
+
   taskDescription.forEach((task, index) => {
-    task.addEventListener('click', () => {
+    task.addEventListener('click', (event) => {
+      console.log(task);
+      
       task.classList.add('edit');
-      // let object = taskarr[index];
+
+      event.preventDefault();
+      
     });
-    task.addEventListener('change', () => {
+
+    task.addEventListener('change', (event) => {
       task.readOnly = false;
       task.classList.remove('edit');
+      event.preventDefault();
+      return event.preventDefault();
       // let object = taskarr[index];
     });
     // the trick is with input

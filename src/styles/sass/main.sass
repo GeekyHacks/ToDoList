@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
 @import global
-$trashcan: url('../sass/trash-can.png')
+
+// $trashcan: 
 body
     @include columnFlex
     justify-content: center
@@ -10,6 +11,8 @@ body
     white-space: pre-wrap
     word-wrap: break-word
     // height: 100vh
+img
+    transition: all 0.5s
 .container
     @include columnFlex
     justify-items: center
@@ -17,27 +20,29 @@ body
     background-color: $secondary-color
     border-radius: 4px
     box-shadow: $box-shadow
+    margin-top: 1rem
     padding: 15px 5px
     text-align: left
     width: 92%
+#tasksList
+    @include columnFlex
+    gap: .3rem
 div, li
     @include rowFlex
     justify-content: space-between
     align-items: center
-    // height: 2.5rem
     border-radius: 4px
     border: 0
     padding: .3rem
     gap: .2rem
-
-img
-    flex: .1
-    height: 1.7rem
-
+#newTask
+    &::focus
+        background: $inputColor
 div
     gap: .5rem
     h1
         @include smlInterH3
+
 input
     @include smlInterP
     border: 0
@@ -60,18 +65,12 @@ input
     cursor: pointer
     transition: all 0.5s
 
-#recyclImg
-    flex: .1
+#recyclImg, #addBtn,.dotsImg
+    height: 1.7rem
+    width: 1.5rem
     opacity: .5
     &:hover
         opacity: 1
-#dotsImg
-    opacity: 7
-
-    &::active
-        background-image: $trashcan
-        background-size: 100%
-        background-repeat: no-repeat
 #clearAllBtn
     @include button
 
@@ -82,3 +81,5 @@ input
         outline: 0
 .edit
     background-color: $inputColor
+.hide
+    display: none

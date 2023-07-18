@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <title>%= htmlWebpackPlugin.options.title %</title>
   </head>
   <body>
@@ -13,7 +15,7 @@
         <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
       </div>
       <div>
-        <input id="userInput" type="text" placeholder="Add to the list"/>
+        <input id="userInput" type="text" placeholder="Add to the list" required />
         <img id="addBtn" alt="add new task" src="./assets/enter.png" />
       </div>
 

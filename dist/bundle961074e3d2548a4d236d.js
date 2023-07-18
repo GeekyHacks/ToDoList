@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/modules/addTask.js":
@@ -8,6 +7,7 @@
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   addTask: () => (/* binding */ addTask),
@@ -32,36 +32,74 @@ var addTask = function addTask(description, index) {
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   dots: () => (/* binding */ dots),
+/* harmony export */   tasksList: () => (/* binding */ tasksList)
 /* harmony export */ });
 /* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
-/* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/trash-can.png */ "./src/assets/trash-can.png");
+/* harmony import */ var _update_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./update.js */ "./src/modules/update.js");
+/* harmony import */ var _update_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_update_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/trash-can.png */ "./src/assets/trash-can.png");
 
-
-// import dots from
 
 var dots = '../assets/three-dots.png';
+
 var tasksList = document.querySelector('#tasksList');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (task) {
   for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i += 1) {
     task = document.createElement('li');
     task.classList.add('newTask');
-    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr !== '') {
-      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img id=\"dotsImg\" class=\"dotsImg\" src=\"").concat(dots, "\" alt=\"\" />\n        ");
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
+      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <div class=\"bgImg\"> <img class=\"dotsImg\" src=\"").concat(dots, "\" alt=\"\" /> </div>\n        \n        ");
+      console.log(task);
       tasksList.appendChild(task);
     }
-    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr === '') {
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description === '') {
       tasksList.innerHTML = '';
     }
   }
-});
-// export default { renderList };
 
-{
-  /* <p class="newTasks" id="addItem" />${taskarr[i].description}</p> */
-}
+  // task.addEventListener('click', () => {
+  //   console.log(task);
+  //   const dots_Trash = document.querySelectorAll('.dotsImg');
+  //   console.log(dots_Trash);
+  //   const imgNode = dots_Trash.FirstChild;
+  //   let newTAsk =task.removeChild(dots_Trash);
+  //   tasksList.appendChild(newTAsk);
+  //   console.log(newTAsk);
+
+  //   dots_Trash.forEach((element) => {
+  //     console.log(element);
+  //     // dots_Trash.getAttribute('src');
+  //     let currntSrc = dots_Trash.getAttribute('src');
+  //     console.log(currntSrc);
+  //   });
+  //   task.removeChild(src);
+  // });
+
+  var taskDescription = document.querySelectorAll('#addItem');
+  taskDescription.forEach(function (task, index) {
+    task.addEventListener('click', function (event) {
+      console.log(task);
+      task.classList.add('edit');
+      event.preventDefault();
+    });
+    task.addEventListener('change', function () {
+      task.readOnly = false;
+      task.classList.remove('edit');
+      event.preventDefault();
+      // let object = taskarr[index];
+    });
+    // the trick is with input
+    task.addEventListener('input', function () {
+      _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[index].description = task.value;
+      localStorage.setItem('taskarr', JSON.stringify(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr));
+    });
+  });
+});
 
 /***/ }),
 
@@ -71,6 +109,7 @@ var tasksList = document.querySelector('#tasksList');
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -92,20 +131,28 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************!*\
   !*** ./src/modules/update.js ***!
   \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _displayList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./displayList.js */ "./src/modules/displayList.js");
-/* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
+// import displayList from './displayList.js';
+// import { taskarr } from './addTask.js';
+// const listItem = document.querySelectorAll('#newTask');
+// const trashCan = '../assets/trash-can.png';
+// const dots_Trash = document.getElementsByClassName('dotsImg');
+// export default (task) => {
+//   const taskItem = document.querySelectorAll('.newTask');
+//   displayList(taskarr);
 
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (taskarr, index, newDescription) {
-  taskarr[index].description = newDescription;
-  return taskarr;
-});
+// //   taskarr.forEach((task) => {
+//     console.log(taskItem);
+//     // console.log(trash);
+//     dots_Trash.removeAttribute('src');
+//     console.log(dots_Trash);
+//     // taskItem.appendChild(taskImg);
+//     // console.log('taskItem');
+//     // taskImg.setAttribute(src, trashCan);
+//     // taskItem.appendChild(taskImg);
+// //   });
+// };
 
 /***/ }),
 
@@ -115,6 +162,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TaskObject)
@@ -141,6 +189,7 @@ var TaskObject = /*#__PURE__*/_createClass(function TaskObject(description, inde
   \****************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -155,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../sass/trash-can.png */ "./src/styles/sass/trash-can.png"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./trash-can.png */ "./src/styles/sass/trash-can.png"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap);"]);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
@@ -177,17 +226,28 @@ body {
   word-wrap: break-word;
 }
 
+img {
+  transition: all 0.5s;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: stretch;
-  background-color: #f4f4f4;
+  background-color: #acc6e4;
   border-radius: 4px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
   padding: 15px 5px;
   text-align: left;
   width: 92%;
+}
+
+#tasksList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 div, li {
@@ -195,18 +255,19 @@ div, li {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 2.5rem;
   border-radius: 4px;
   border: 0;
-  padding: 0.1rem;
-  align-self: stretch;
+  padding: 0.3rem;
   gap: 0.2rem;
 }
 
-img {
-  height: 2rem;
+#newTask::focus {
+  background: #a8ccf5;
 }
 
+div {
+  gap: 0.5rem;
+}
 div h1 {
   color: black;
   font-size: 1.2rem;
@@ -214,46 +275,49 @@ div h1 {
   font-weight: 600;
   letter-spacing: 0.0025rem;
 }
-div #userInput {
-  width: 100%;
-}
 
 input {
-  height: 2rem;
+  color: black;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.0125rem;
   border: 0;
   padding: 0.3rem;
   align-self: stretch;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+#userInput {
+  height: 2rem;
+  width: 100%;
 }
 
 #addItem {
   flex: 0.9;
+  outline: none;
 }
 
 #checkB {
   flex: 0.1;
   border-radius: 4px;
-  width: 5vw;
+  height: 1.3rem;
   align-self: center;
   cursor: pointer;
   transition: all 0.5s;
 }
 
-#recyclImg {
-  flex: 0.1;
+#recyclImg, #addBtn, .dotsImg {
+  height: 1.7rem;
+  width: 1.5rem;
   opacity: 0.5;
 }
-#recyclImg:hover {
+#recyclImg:hover, #addBtn:hover, .dotsImg:hover {
   opacity: 1;
 }
 
-#dotsImg {
-  opacity: 7;
-}
-#dotsImg::active {
-  background-image: url(${___CSS_LOADER_URL_REPLACEMENT_0___});
-  background-size: 100%;
-  background-repeat: no-repeat;
+.dotsImg {
+  display: none;
+  background: transparent;
 }
 
 #clearAllBtn {
@@ -265,7 +329,7 @@ input {
   letter-spacing: 0.001em;
   word-spacing: normal;
   background-color: #2fa8cc;
-  color: #f4f4f4;
+  color: #acc6e4;
   border: 0;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -277,7 +341,26 @@ input {
 }
 #clearAllBtn:focus {
   outline: 0;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAIA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACFJ;;AAFA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,qBAAA;EACA,qBAAA;AAMJ;;AAJA;EDAI,aAAA;EACA,sBAAA;ECCA,qBAAA;EACA,oBAAA;EACA,yBDdc;ECed,kBAAA;EACA,wEDfS;ECgBT,iBAAA;EACA,gBAAA;EACA,UAAA;AAQJ;;AAPA;EDPI,aAAA;EACA,mBAAA;ECQA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,WAAA;AAWJ;;AATA;EAEI,YAAA;AAWJ;;AARI;EDiBA,YAAA;EACA,iBAAA;EACA,gCAzDQ;EA0DR,gBAAA;EACA,yBAAA;ACLJ;AAdI;EACI,WAAA;AAgBR;;AAfA;EACI,YAAA;EACA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAkBJ;;AAhBA;EACI,SAAA;AAmBJ;;AAlBA;EACI,SAAA;EACA,kBAAA;EACA,UAAA;EACA,kBAAA;EAEA,eAAA;EACA,oBAAA;AAoBJ;;AAlBA;EACI,SAAA;EACA,YAAA;AAqBJ;AApBI;EACI,UAAA;AAsBR;;AArBA;EACI,UAAA;AAwBJ;AAtBI;EACI,yDAnEG;EAoEH,qBAAA;EACA,4BAAA;AAwBR;;AAvBA;EDtDI,oBAAA;EACA,kBAAA;EACA,gCApBQ;EAqBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAxBY;EAyBZ,cAxBc;EAyBd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;ACiFJ;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: 1rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n@mixin transparentText\r\n    background-image: url(\"../images/books.svg\")\r\n    background-repeat: repeat-x\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$trashcan: url('../sass/trash-can.png')\r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    // height: 100vh\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    height: 2.5rem\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    align-self: stretch\r\n    gap: .2rem\r\n\r\nimg\r\n\r\n    height: 2rem\r\n\r\ndiv\r\n    h1\r\n        @include smlInterH3\r\n    #userInput\r\n        width: 100%\r\ninput\r\n    height: 2rem\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 2px\r\n\r\n#addItem\r\n    flex: .9\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    width: 5vw\r\n    align-self: center\r\n\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg\r\n    flex: .1\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#dotsImg\r\n    opacity: 7\r\n\r\n    &::active\r\n        background-image: $trashcan\r\n        background-size: 100%\r\n        background-repeat: no-repeat\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n"],"sourceRoot":""}]);
+}
+
+.bgImg {
+  opacity: 1;
+  visibility: visible;
+  height: 2rem;
+  width: 1.8rem;
+  padding: 0;
+  background-image: url(${___CSS_LOADER_URL_REPLACEMENT_0___});
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.edit {
+  background-color: #a8ccf5;
+}
+
+.hide {
+  display: none;
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;AAFA;EDUI,aAAA;EACA,sBAAA;ECTA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,qBAAA;EACA,qBAAA;AAMJ;;AAJA;EACI,oBAAA;AAOJ;;AANA;EDDI,aAAA;EACA,sBAAA;ECEA,qBAAA;EACA,oBAAA;EACA,yBDhBc;ECiBd,kBAAA;EACA,wEDhBS;ECiBT,gBAAA;EACA,iBAAA;EACA,gBAAA;EACA,UAAA;AAUJ;;AATA;EDZI,aAAA;EACA,sBAAA;ECaA,WAAA;AAaJ;;AAZA;EDZI,aAAA;EACA,mBAAA;ECaA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,WAAA;AAgBJ;;AAdI;EACI,mBDnCI;ACoDZ;;AAhBA;EACI,WAAA;AAmBJ;AAlBI;EDeA,YAAA;EACA,iBAAA;EACA,gCA1DQ;EA2DR,gBAAA;EACA,yBAAA;ACMJ;;AAtBA;EDkBI,YAAA;EACA,iBAAA;EACA,gCAhEQ;EAiER,yBAAA;ECnBA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AA4BJ;;AA1BA;EACI,YAAA;EACA,WAAA;AA6BJ;;AA3BA;EACI,SAAA;EACA,aAAA;AA8BJ;;AA7BA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AAgCJ;;AA9BA;EACI,cAAA;EACA,aAAA;EACA,YAAA;AAiCJ;AAhCI;EACI,UAAA;AAkCR;;AAhCA;EACI,aAAA;EACA,uBAAA;AAmCJ;;AAjCA;ED1DI,oBAAA;EACA,kBAAA;EACA,gCArBQ;EAsBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAzBY;EA0BZ,cAzBc;EA0Bd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC+FJ;AA/CI;EACI,sBAAA;AAiDR;AA/CI;EACI,UAAA;AAiDR;;AAhDA;EACI,UAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,UAAA;EAEA,yDAAA;EACA,4BAAA;EACA,wBAAA;AAkDJ;;AAjDA;EACI,yBD7FQ;ACiJZ;;AAnDA;EACI,aAAA;AAsDJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    // height: 100vh\r\nimg\r\n    transition: all 0.5s\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    margin-top: 1rem\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .3rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .3rem\r\n    gap: .2rem\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .5rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 2rem\r\n    width: 100%\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,.dotsImg\r\n    height: 1.7rem\r\n    width: 1.5rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n\r\n.dotsImg\r\n    display: none\r\n    background: transparent\r\n\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n.bgImg\r\n    opacity: 1\r\n    visibility: visible\r\n    height: 2rem\r\n    width: 1.8rem\r\n    padding: 0\r\n    // background: red\r\n    background-image: url('./trash-can.png')\r\n    background-repeat: no-repeat\r\n    background-size: contain\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    display: none\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -290,6 +373,7 @@ input {
   \*****************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /*
@@ -384,6 +468,7 @@ module.exports = function (cssWithMappingToString) {
   \********************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 module.exports = function (url, options) {
@@ -419,6 +504,7 @@ module.exports = function (url, options) {
   \************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 module.exports = function (item) {
@@ -444,6 +530,7 @@ module.exports = function (item) {
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -458,6 +545,7 @@ __webpack_require__.r(__webpack_exports__);
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -472,6 +560,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -486,6 +575,7 @@ __webpack_require__.r(__webpack_exports__);
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -500,6 +590,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -554,6 +645,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var stylesInDOM = [];
@@ -647,6 +739,7 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var memo = {};
@@ -690,6 +783,7 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -709,6 +803,7 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -728,6 +823,7 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -798,6 +894,7 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -821,6 +918,7 @@ module.exports = styleTagTransform;
   \***************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 module.exports = __webpack_require__.p + "trash-can.png";
 
 /***/ })
@@ -963,8 +1061,9 @@ module.exports = __webpack_require__.p + "trash-can.png";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
@@ -975,8 +1074,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/addTask.js */ "./src/modules/addTask.js");
 /* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
 /* harmony import */ var _assets_three_dots_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/three-dots.png */ "./src/assets/three-dots.png");
-/* harmony import */ var _modules_removeItems_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/removeItems.js */ "./src/modules/removeItems.js");
-/* harmony import */ var _modules_update_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/update.js */ "./src/modules/update.js");
+/* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/trash-can.png */ "./src/assets/trash-can.png");
+/* harmony import */ var _modules_removeItems_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/removeItems.js */ "./src/modules/removeItems.js");
 
 
 
@@ -985,7 +1084,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var taskDescription = document.querySelectorAll('#addItem');
 var userInput = document.querySelector('#userInput');
 var addBtn = document.querySelector('#addBtn');
 var clearAllBtn = document.querySelector('#clearAllBtn');
@@ -1004,24 +1102,42 @@ addBtn.addEventListener('click', function (event) {
   reloading();
   return event.preventDefault();
 });
+userInput.addEventListener('keypress', function (event) {
+  var description = userInput.value;
+  var index = _modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr.length;
+  if (description === '') {
+    return null;
+  }
+  if (event.key === 'Enter' && userInput.value !== '') {
+    (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.addTask)(description, index);
+    reloading();
+    return _modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr;
+  }
+});
 (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr);
 document.addEventListener('click', function (event) {
-  var removeItem = document.querySelectorAll('.dotsImg');
-  removeItem.forEach(function (icon, index) {
-    if (event.target === icon) {
-      (0,_modules_removeItems_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr, index);
+  var dots_trash = document.querySelectorAll('.dotsImg');
+  // dots_trash.forEach((icon, index) => {
+  //   if (event.target === icon) {
+  //     removeTask(taskarr, index);
+  //     reloading();
+  //   }
+  // });
+  var bgImg = document.querySelectorAll('.bgImg');
+  bgImg.forEach(function (Image) {
+    if (event.target === Image) {
+      var _dots_trash = document.querySelectorAll('.dotsImg');
+      dots_Trash.classList.add('hide');
       reloading();
     }
-  });
-  taskDescription.forEach(function (task, newDescription) {
-    if (event.target === task) {
-      newDescription = userInput.value;
-      (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.addTask)(newDescription);
-      reloading();
-    }
-    localStorage.setItem(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr, event.target.value);
   });
 });
+
+// bgImg.addEventListener('click', () => {
+//   const dots_Trash = document.querySelectorAll('.dotsImg');
+//   dots_Trash.classList.remove('.dotsImg');
+//   reloading();
+// });
 
 // // this will clear all localstorage elements too, just temproary
 clearAllBtn.addEventListener('click', function () {
@@ -1032,4 +1148,4 @@ clearAllBtn.addEventListener('click', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle2a22cf8900fc56fb9336.js.map
+//# sourceMappingURL=bundle961074e3d2548a4d236d.js.map
