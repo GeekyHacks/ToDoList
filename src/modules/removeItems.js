@@ -1,13 +1,19 @@
-export default (taskarr, index) => {
+import { taskarr } from './addTask';
+
+const removeTask = (taskarr, index) => {
   let i = index;
 
   while (i < taskarr.length) {
     taskarr[i].index = i;
-
-    i += 1;
+    i+=1;
     taskarr.splice(index, 1);
+
+    // taskarr[i].index = i;
   }
+
   localStorage.setItem('taskarr', JSON.stringify(taskarr));
 
   return taskarr;
 };
+
+export { removeTask };

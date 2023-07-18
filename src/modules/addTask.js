@@ -6,5 +6,9 @@ export const taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
 export const addTask = (description, index) => {
   const newTask = new TaskObject(description, index + 1);
   taskarr.push(newTask);
+  // const sortedArr = [...taskarr];
+  // sortedArr.sort((a, b) => a.index - b.index);
   localStorage.setItem('taskarr', JSON.stringify(taskarr));
+  return taskarr;
+
 };

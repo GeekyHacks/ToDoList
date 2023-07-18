@@ -21,7 +21,10 @@ var taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
 var addTask = function addTask(description, index) {
   var newTask = new _userInput_js__WEBPACK_IMPORTED_MODULE_0__["default"](description, index + 1);
   taskarr.push(newTask);
+  // const sortedArr = [...taskarr];
+  // sortedArr.sort((a, b) => a.index - b.index);
   localStorage.setItem('taskarr', JSON.stringify(taskarr));
+  return taskarr;
 };
 
 /***/ }),
@@ -42,56 +45,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
 /* harmony import */ var _update_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./update.js */ "./src/modules/update.js");
 /* harmony import */ var _update_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_update_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/trash-can.png */ "./src/assets/trash-can.png");
 
 
 var dots = '../assets/three-dots.png';
-
+var trash_can = '../assets/trash-can.png';
 var tasksList = document.querySelector('#tasksList');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (task) {
   for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i += 1) {
     task = document.createElement('li');
     task.classList.add('newTask');
-    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
-      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <div class=\"bgImg\"> <img class=\"dotsImg\" src=\"").concat(dots, "\" alt=\"\" /> </div>\n        \n        ");
-      console.log(task);
-      tasksList.appendChild(task);
-    }
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description === '') {
       tasksList.innerHTML = '';
     }
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
+      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " c />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src=\"").concat(trash_can, "\" alt=\"\" />\n        ");
+      tasksList.appendChild(task);
+    }
   }
-
-  // task.addEventListener('click', () => {
-  //   console.log(task);
-  //   const dots_Trash = document.querySelectorAll('.dotsImg');
-  //   console.log(dots_Trash);
-  //   const imgNode = dots_Trash.FirstChild;
-  //   let newTAsk =task.removeChild(dots_Trash);
-  //   tasksList.appendChild(newTAsk);
-  //   console.log(newTAsk);
-
-  //   dots_Trash.forEach((element) => {
-  //     console.log(element);
-  //     // dots_Trash.getAttribute('src');
-  //     let currntSrc = dots_Trash.getAttribute('src');
-  //     console.log(currntSrc);
-  //   });
-  //   task.removeChild(src);
-  // });
-
   var taskDescription = document.querySelectorAll('#addItem');
   taskDescription.forEach(function (task, index) {
     task.addEventListener('click', function (event) {
-      console.log(task);
       task.classList.add('edit');
-      event.preventDefault();
     });
-    task.addEventListener('change', function () {
-      task.readOnly = false;
+    task.addEventListener('change', function (event) {
+      // task.readOnly = false;
       task.classList.remove('edit');
-      event.preventDefault();
-      // let object = taskarr[index];
+      return event.preventDefault();
     });
     // the trick is with input
     task.addEventListener('input', function () {
@@ -112,18 +91,23 @@ var tasksList = document.querySelector('#tasksList');
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   removeTask: () => (/* binding */ removeTask)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (taskarr, index) {
+/* harmony import */ var _addTask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask */ "./src/modules/addTask.js");
+
+var removeTask = function removeTask(taskarr, index) {
   var i = index;
   while (i < taskarr.length) {
     taskarr[i].index = i;
-    i += 1;
     taskarr.splice(index, 1);
+    i++;
+    // taskarr[i].index = i;
   }
+
   localStorage.setItem('taskarr', JSON.stringify(taskarr));
   return taskarr;
-});
+};
+
 
 /***/ }),
 
@@ -198,16 +182,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
 // Imports
 
 
-
-var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./trash-can.png */ "./src/styles/sass/trash-can.png"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap);"]);
-var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `* {
   box-sizing: border-box;
@@ -315,11 +294,6 @@ input {
   opacity: 1;
 }
 
-.dotsImg {
-  display: none;
-  background: transparent;
-}
-
 #clearAllBtn {
   transition: all 0.5s;
   border-radius: 2px;
@@ -343,24 +317,13 @@ input {
   outline: 0;
 }
 
-.bgImg {
-  opacity: 1;
-  visibility: visible;
-  height: 2rem;
-  width: 1.8rem;
-  padding: 0;
-  background-image: url(${___CSS_LOADER_URL_REPLACEMENT_0___});
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .edit {
   background-color: #a8ccf5;
 }
 
 .hide {
   display: none;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;AAFA;EDUI,aAAA;EACA,sBAAA;ECTA,uBAAA;EACA,mBAAA;EACA,yBDNY;ECOZ,iCAAA;EACA,qBAAA;EACA,qBAAA;AAMJ;;AAJA;EACI,oBAAA;AAOJ;;AANA;EDDI,aAAA;EACA,sBAAA;ECEA,qBAAA;EACA,oBAAA;EACA,yBDhBc;ECiBd,kBAAA;EACA,wEDhBS;ECiBT,gBAAA;EACA,iBAAA;EACA,gBAAA;EACA,UAAA;AAUJ;;AATA;EDZI,aAAA;EACA,sBAAA;ECaA,WAAA;AAaJ;;AAZA;EDZI,aAAA;EACA,mBAAA;ECaA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,WAAA;AAgBJ;;AAdI;EACI,mBDnCI;ACoDZ;;AAhBA;EACI,WAAA;AAmBJ;AAlBI;EDeA,YAAA;EACA,iBAAA;EACA,gCA1DQ;EA2DR,gBAAA;EACA,yBAAA;ACMJ;;AAtBA;EDkBI,YAAA;EACA,iBAAA;EACA,gCAhEQ;EAiER,yBAAA;ECnBA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AA4BJ;;AA1BA;EACI,YAAA;EACA,WAAA;AA6BJ;;AA3BA;EACI,SAAA;EACA,aAAA;AA8BJ;;AA7BA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AAgCJ;;AA9BA;EACI,cAAA;EACA,aAAA;EACA,YAAA;AAiCJ;AAhCI;EACI,UAAA;AAkCR;;AAhCA;EACI,aAAA;EACA,uBAAA;AAmCJ;;AAjCA;ED1DI,oBAAA;EACA,kBAAA;EACA,gCArBQ;EAsBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAzBY;EA0BZ,cAzBc;EA0Bd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC+FJ;AA/CI;EACI,sBAAA;AAiDR;AA/CI;EACI,UAAA;AAiDR;;AAhDA;EACI,UAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,UAAA;EAEA,yDAAA;EACA,4BAAA;EACA,wBAAA;AAkDJ;;AAjDA;EACI,yBD7FQ;ACiJZ;;AAnDA;EACI,aAAA;AAsDJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    // height: 100vh\r\nimg\r\n    transition: all 0.5s\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    margin-top: 1rem\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .3rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .3rem\r\n    gap: .2rem\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .5rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 2rem\r\n    width: 100%\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,.dotsImg\r\n    height: 1.7rem\r\n    width: 1.5rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n\r\n.dotsImg\r\n    display: none\r\n    background: transparent\r\n\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n.bgImg\r\n    opacity: 1\r\n    visibility: visible\r\n    height: 2rem\r\n    width: 1.8rem\r\n    padding: 0\r\n    // background: red\r\n    background-image: url('./trash-can.png')\r\n    background-repeat: no-repeat\r\n    background-size: contain\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    display: none\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;AADA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDPY;ECQZ,iCAAA;EACA,qBAAA;EACA,qBAAA;AAKJ;;AAHA;EACI,oBAAA;AAMJ;;AALA;EDFI,aAAA;EACA,sBAAA;ECGA,qBAAA;EACA,oBAAA;EACA,yBDjBc;ECkBd,kBAAA;EACA,wEDjBS;ECkBT,gBAAA;EACA,iBAAA;EACA,gBAAA;EACA,UAAA;AASJ;;AARA;EDbI,aAAA;EACA,sBAAA;ECcA,WAAA;AAYJ;;AAXA;EDbI,aAAA;EACA,mBAAA;ECcA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,WAAA;AAeJ;;AAbI;EACI,mBDpCI;ACoDZ;;AAfA;EACI,WAAA;AAkBJ;AAjBI;EDcA,YAAA;EACA,iBAAA;EACA,gCA1DQ;EA2DR,gBAAA;EACA,yBAAA;ACMJ;;AArBA;EDiBI,YAAA;EACA,iBAAA;EACA,gCAhEQ;EAiER,yBAAA;EClBA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AA2BJ;;AAzBA;EACI,YAAA;EACA,WAAA;AA4BJ;;AA1BA;EACI,SAAA;EACA,aAAA;AA6BJ;;AA5BA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AA+BJ;;AA7BA;EACI,cAAA;EACA,aAAA;EACA,YAAA;AAgCJ;AA/BI;EACI,UAAA;AAiCR;;AAhCA;EDtDI,oBAAA;EACA,kBAAA;EACA,gCArBQ;EAsBR,gBAAA;EACA,eAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAzBY;EA0BZ,cAzBc;EA0Bd,SAAA;EACA,wEAzBS;EA0BT,aAAA;EACA,eAAA;EACA,kBAAA;AC0FJ;AA9CI;EACI,sBAAA;AAgDR;AA9CI;EACI,UAAA;AAgDR;;AA/CA;EACI,yBD/EQ;ACiIZ;;AAjDA;EACI,aAAA;AAoDJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    // height: 100vh\r\nimg\r\n    transition: all 0.5s\r\n.container\r\n    @include columnFlex\r\n    justify-items: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    margin-top: 1rem\r\n    padding: 15px 5px\r\n    text-align: left\r\n    width: 92%\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .3rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .3rem\r\n    gap: .2rem\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .5rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 2rem\r\n    width: 100%\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,.dotsImg\r\n    height: 1.7rem\r\n    width: 1.5rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#clearAllBtn\r\n    @include button\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    display: none\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -462,42 +425,6 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-module.exports = function (url, options) {
-  if (!options) {
-    options = {};
-  }
-  if (!url) {
-    return url;
-  }
-  url = String(url.__esModule ? url.default : url);
-
-  // If url is already wrapped in quotes, remove them
-  if (/^['"].*['"]$/.test(url)) {
-    url = url.slice(1, -1);
-  }
-  if (options.hash) {
-    url += options.hash;
-  }
-
-  // Should url be wrapped?
-  // See https://drafts.csswg.org/css-values-3/#urls
-  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
-    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
-  }
-  return url;
-};
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
 /*!************************************************************!*\
   !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
@@ -569,10 +496,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/assets/trash-can.png":
-/*!**********************************!*\
-  !*** ./src/assets/trash-can.png ***!
-  \**********************************/
+/***/ "./src/styles/sass/trash-can.png":
+/*!***************************************!*\
+  !*** ./src/styles/sass/trash-can.png ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -910,17 +837,6 @@ function styleTagTransform(css, styleElement) {
 }
 module.exports = styleTagTransform;
 
-/***/ }),
-
-/***/ "./src/styles/sass/trash-can.png":
-/*!***************************************!*\
-  !*** ./src/styles/sass/trash-can.png ***!
-  \***************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "trash-can.png";
-
 /***/ })
 
 /******/ 	});
@@ -949,9 +865,6 @@ module.exports = __webpack_require__.p + "trash-can.png";
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -977,18 +890,6 @@ module.exports = __webpack_require__.p + "trash-can.png";
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -1003,55 +904,6 @@ module.exports = __webpack_require__.p + "trash-can.png";
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src;
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) {
-/******/ 					var i = scripts.length - 1;
-/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
-/******/ 				}
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"bundle": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		// no on chunks loaded
-/******/ 		
-/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
@@ -1074,7 +926,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/addTask.js */ "./src/modules/addTask.js");
 /* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
 /* harmony import */ var _assets_three_dots_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/three-dots.png */ "./src/assets/three-dots.png");
-/* harmony import */ var _assets_trash_can_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/trash-can.png */ "./src/assets/trash-can.png");
+/* harmony import */ var _styles_sass_trash_can_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles/sass/trash-can.png */ "./src/styles/sass/trash-can.png");
 /* harmony import */ var _modules_removeItems_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/removeItems.js */ "./src/modules/removeItems.js");
 
 
@@ -1090,7 +942,7 @@ var clearAllBtn = document.querySelector('#clearAllBtn');
 
 // to reload the page this should fix the double rendering issue
 var reloading = function reloading() {
-  setInterval(document.location.reload());
+  setInterval(document.location.reload(), 50);
 };
 addBtn.addEventListener('click', function (event) {
   var description = userInput.value;
@@ -1099,7 +951,7 @@ addBtn.addEventListener('click', function (event) {
     return null;
   }
   (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.addTask)(description, index);
-  reloading();
+  reloading(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr);
   return event.preventDefault();
 });
 userInput.addEventListener('keypress', function (event) {
@@ -1110,29 +962,54 @@ userInput.addEventListener('keypress', function (event) {
   }
   if (event.key === 'Enter' && userInput.value !== '') {
     (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.addTask)(description, index);
-    reloading();
+    reloading(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr);
+    event.preventDefault();
+    localStorage.setItem('taskarr', JSON.stringify(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr));
     return _modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr;
   }
 });
-(0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr);
-document.addEventListener('click', function (event) {
-  var dots_trash = document.querySelectorAll('.dotsImg');
-  // dots_trash.forEach((icon, index) => {
-  //   if (event.target === icon) {
-  //     removeTask(taskarr, index);
-  //     reloading();
+(0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_4__["default"])();
+var dots_trash = document.querySelector('#dotsImg');
+// document.addEventListener('click', (event) => {
+dots_trash.addEventListener('click', function (event) {
+  event.preventDefault();
+  localStorage.setItem('taskarr', JSON.stringify(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr));
+  (0,_modules_removeItems_js__WEBPACK_IMPORTED_MODULE_7__.removeTask)(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr, 0);
+  reloading();
+  localStorage.setItem('taskarr', JSON.stringify(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_3__.taskarr));
+
+  // dots_trash.forEach((Image) => {
+  //   if (event.target === Image) {
+  //     console.log(removeTask(taskarr, 0));
+  //     // removeTask(taskarr, index);
+  //     // reloading();
+  //     localStorage.setItem('taskarr', JSON.stringify(taskarr));
+  //     event.preventDefault();
+  //     return taskarr;
   //   }
   // });
-  var bgImg = document.querySelectorAll('.bgImg');
-  bgImg.forEach(function (Image) {
-    if (event.target === Image) {
-      var _dots_trash = document.querySelectorAll('.dotsImg');
-      dots_Trash.classList.add('hide');
-      reloading();
-    }
-  });
-});
 
+  dots_trash.rem;
+  return event.preventDefault();
+  //// trying to hide the img and show the bg img instead
+  //   const bgImg = document.querySelectorAll('.bgImg');
+  //   bgImg.forEach((Image) => {
+  //     if (event.target === Image) {
+  //       const dots_trash = document.querySelectorAll('.dotsImg');
+  //       dots_Trash.classList.add('hide');
+  //       reloading();
+  //     }
+  //   });
+  // const checkB = document.querySelectorAll('#checkB');
+  // if (checkB.checked) {
+
+  //   console.log(checkB);
+  //   checkB.addEventListener('change', () => {
+  //     console.log(checkB);
+  //   });
+  // }
+});
+// renderList(taskarr);
 // bgImg.addEventListener('click', () => {
 //   const dots_Trash = document.querySelectorAll('.dotsImg');
 //   dots_Trash.classList.remove('.dotsImg');
@@ -1148,4 +1025,4 @@ clearAllBtn.addEventListener('click', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle961074e3d2548a4d236d.js.map
+//# sourceMappingURL=bundle0523480824ff9fb7f342.js.map
