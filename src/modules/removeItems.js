@@ -1,6 +1,7 @@
 import { taskarr } from './addTask';
 
 const removeTask = (taskarr, index) => {
+  
   let i = index;
 
   while (i < taskarr.length) {
