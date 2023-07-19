@@ -45,45 +45,43 @@ userInput.addEventListener('keypress', (event) => {
 
 renderList();
 
-const addClickEventListnerers = () => {
-  const removeBtns = document.querySelectorAll('.dotsImg');
-  removeBtns.forEach((removeBtn) => {
-    removeBtn.addEventListener('click', () => {
-      // if ((e.target = Image)) {
-      // reloading();
-      console.log(removeTask(taskarr, index));
-      removeTask(taskarr, 0)
-      // }
-    });
-  });
-};
-addClickEventListnerers();
-// // document.addEventListener('click', (event) => {
-// document.addEventListener('click', (event) => {
-//   const dots_trash = document.querySelectorAll('#dotsImg');
-
-//   dots_trash.forEach((Image) => {
-//     if (event.target === Image) {
-//       console.log(removeTask(taskarr, 0));
-//       // removeTask(taskarr, index);
+// const addClickEventListnerers = () => {
+//   const removeBtns = document.querySelectorAll('.dotsImg');
+//   removeBtns.forEach((removeBtn) => {
+//     removeBtn.addEventListener('click', (index) => {
+//       // if ((e.target = Image)) {
 //       // reloading();
-//       localStorage.setItem('taskarr', JSON.stringify(taskarr));
-//       event.preventDefault();
-//       return taskarr;
-//     }
-//   });
 
-//   dots_trash.rem;
-//   return event.preventDefault();
-//   //// trying to hide the img and show the bg img instead
-//   //   const bgImg = document.querySelectorAll('.bgImg');
-//   //   bgImg.forEach((Image) => {
-//   //     if (event.target === Image) {
-//   //       const dots_trash = document.querySelectorAll('.dotsImg');
-//   //       dots_Trash.classList.add('hide');
-//   //       reloading();
-//   //     }
-//   //   });
+//       console.log(removeTask(taskarr, index));
+//       removeTask(taskarr, 0)
+//       // }
+//     });
+//   });
+// };
+// addClickEventListnerers();
+// // document.addEventListener('click', (event) => {
+document.addEventListener('click', (event) => {
+  const dots_trash = document.querySelectorAll('.dotsImg');
+
+  dots_trash.forEach((icon) => {
+    if (event.target === icon) {
+      removeTask(taskarr, 0);
+    }
+    reloading();
+    return event.preventDefault();
+
+  });
+
+  //   dots_trash.rem;
+  //   //// trying to hide the img and show the bg img instead
+  //   //   const bgImg = document.querySelectorAll('.bgImg');
+  //   //   bgImg.forEach((Image) => {
+  //   //     if (event.target === Image) {
+  //   //       const dots_trash = document.querySelectorAll('.dotsImg');
+  //   //       dots_Trash.classList.add('hide');
+  //   //       reloading();
+  //   //     }
+});
 //   // const checkB = document.querySelectorAll('#checkB');
 //   // if (checkB.checked) {
 

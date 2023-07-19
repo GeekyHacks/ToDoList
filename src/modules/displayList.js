@@ -33,7 +33,7 @@ export default (task) => {
     });
 
     task.addEventListener('change', (event) => {
-      // task.readOnly = false;
+      task.readOnly = false;
       task.classList.remove('edit');
 
       return event.preventDefault();
