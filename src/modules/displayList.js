@@ -1,7 +1,7 @@
 import { taskarr } from './addTask.js';
 // import update from './update.js';
 // export const dots = '../assets/three-dots.png';
-const trash_can = '../assets/trash-can.png';
+const trashCan = '../assets/trash-can.png';
 
 export const tasksList = document.querySelector('#tasksList');
 
@@ -14,7 +14,7 @@ export default (task) => {
       task.innerHTML = `
         <input type="checkbox" id="checkB" ${taskarr[i].completed} />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
-        <img class="dotsImg" id="dotsImg"  src="${trash_can}" alt="" />
+        <img class="dotsImg" id="dotsImg"  src="${trashCan}" alt="" />
         `;
     }
     if (taskarr[i].description === '') {

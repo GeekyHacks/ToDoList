@@ -1,4 +1,3 @@
-
 export default (taskarr, index) => {
   taskarr.splice(index, 1);
   let i = index;

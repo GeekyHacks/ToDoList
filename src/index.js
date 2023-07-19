@@ -52,10 +52,9 @@ document.addEventListener('click', (event) => {
       removeItems(taskarr, index);
       localStorage.setItem('taskarr', JSON.stringify(taskarr));
 
-  // this will sort out the index when removing Items
+      // this will sort out the index when removing Items
       const sortedArr = [...taskarr];
       index = taskarr.length;
-      console.log(index);
       sortedArr.sort((a, b) => a.index - b.index);
 
       reloading(sortedArr);

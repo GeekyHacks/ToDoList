@@ -7,11 +7,10 @@ export const addTask = (description, index) => {
   index = taskarr.length;
   const newTask = new TaskObject(description, index);
   taskarr.push(newTask);
-  // this will sort out the  user input index 
+  // this will sort out the  user input index
   const sortedArr = [...taskarr];
   sortedArr.sort((a, b) => a.index - b.index);
 
   localStorage.setItem('taskarr', JSON.stringify(sortedArr));
-  console.log(taskarr);
   return taskarr;
 };
