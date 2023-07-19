@@ -1,67 +1,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
 @import global
 
+// $trashcan: 
 body
+    @include columnFlex
+    justify-content: center
+    align-items: center
     background-color: $primary-color
     font-family: 'Roboto', sans-serif
+    white-space: pre-wrap
+    word-wrap: break-word
     // height: 100vh
+img
+    transition: all 0.5s
 .container
     @include columnFlex
+    justify-items: center
+    align-items: stretch
     background-color: $secondary-color
     border-radius: 4px
     box-shadow: $box-shadow
+    margin-top: 1rem
     padding: 15px 5px
     text-align: left
-    margin: 15rem 10rem
+    width: 92%
+#tasksList
+    @include columnFlex
+    gap: .3rem
 div, li
     @include rowFlex
     justify-content: space-between
     align-items: center
-    height: 2.5rem
     border-radius: 4px
     border: 0
-    padding: .1rem
-    align-self: stretch
+    padding: .3rem
     gap: .2rem
-
-img
-
-    height: 2rem
-li
-    .onEdit
-        background-color: rgb(253, 227, 178)
+#newTask
+    &::focus
+        background: $inputColor
 div
+    gap: .5rem
     h1
         @include smlInterH3
-    #userInput
-        width: 100%
+
 input
-    height: 2rem
+    @include smlInterP
     border: 0
     padding: .3rem
     align-self: stretch
-    border-radius: 2px
-
-#checkB
     border-radius: 4px
-    width: 5vw
-    align-self: center
 
+#userInput
+    height: 2rem
+    width: 100%
+
+#addItem
+    flex: .9
+    outline: none
+#checkB
+    flex: .1
+    border-radius: 4px
+    height: 1.3rem
+    align-self: center
     cursor: pointer
     transition: all 0.5s
 
-#recyclImg
+#recyclImg, #addBtn,.dotsImg
+    height: 1.7rem
+    width: 1.5rem
     opacity: .5
     &:hover
         opacity: 1
-#dotsImg
-    opacity: 7
-
-    &::active
-        // background-image: url(../assets/trash-can.png)
-        background-size: 100%
-        background-repeat: no-repeat
-#clearBtn
+#clearAllBtn
     @include button
 
     &:active
@@ -69,3 +79,7 @@ input
 
     &:focus
         outline: 0
+.edit
+    background-color: $inputColor
+.hide
+    display: none
