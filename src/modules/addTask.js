@@ -8,7 +8,7 @@ export const addTask = (description, index) => {
   taskarr.push(newTask);
   // const sortedArr = [...taskarr];
   // sortedArr.sort((a, b) => a.index - b.index);
-  localStorage.setItem('taskarr', JSON.stringify(taskarr));
+  // localStorage.setItem('taskarr', JSON.stringify(taskarr));
   return taskarr;
 
 };

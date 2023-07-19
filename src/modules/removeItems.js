@@ -20,17 +20,17 @@ import { taskarr } from './addTask';
 const removeTask = (taskarr, index) => {
   let i = index;
 
-  while (i < taskarr.length) {
+  while (i <= taskarr.length) {
     taskarr[i].index = i;
-          console.log(i);
 
     i += 1;
     taskarr.splice(index, 1);
     localStorage.setItem('taskarr', JSON.stringify(taskarr));
+    console.log(taskarr);
     // taskarr[i].index = i;
   }
 
-  return taskarr;
+  // return taskarr;
 };
 
 export { removeTask };

@@ -43,7 +43,7 @@ userInput.addEventListener('keypress', (event) => {
   }
 });
 
-renderList();
+renderList(taskarr);
 
 // const addClickEventListnerers = () => {
 //   const removeBtns = document.querySelectorAll('.dotsImg');
@@ -65,10 +65,10 @@ document.addEventListener('click', (event) => {
 
   dots_trash.forEach((icon) => {
     if (event.target === icon) {
-      removeTask(taskarr, 0);
+      removeTask(taskarr,0,0);
     }
     reloading();
-    return event.preventDefault();
+    return event.preventDefault(taskarr);
 
   });
 

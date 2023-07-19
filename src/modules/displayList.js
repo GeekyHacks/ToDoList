@@ -20,7 +20,7 @@ export default (task) => {
     if (taskarr[i].description === '') {
       tasksList.innerHTML = '';
     }
-    
+
     tasksList.appendChild(task);
   }
 
@@ -38,6 +38,7 @@ export default (task) => {
 
       return event.preventDefault();
     });
+    task.readOnly = true;
     // the trick is with input
     task.addEventListener('input', () => {
       taskarr[index].description = task.value;
