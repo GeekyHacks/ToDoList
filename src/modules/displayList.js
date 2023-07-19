@@ -1,6 +1,6 @@
 import { taskarr } from './addTask.js';
-import update from './update.js';
-export const dots = '../assets/three-dots.png';
+// import update from './update.js';
+// export const dots = '../assets/three-dots.png';
 const trash_can = '../assets/trash-can.png';
 
 export const tasksList = document.querySelector('#tasksList');
@@ -12,7 +12,7 @@ export default (task) => {
 
     if (taskarr[i].description !== '') {
       task.innerHTML = `
-        <input type="checkbox" id="checkB" ${taskarr[i].completed} c />
+        <input type="checkbox" id="checkB" ${taskarr[i].completed} />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
         <img class="dotsImg" id="dotsImg"  src="${trash_can}" alt="" />
         `;
@@ -38,7 +38,6 @@ export default (task) => {
 
       return event.preventDefault();
     });
-    task.readOnly = true;
     // the trick is with input
     task.addEventListener('input', () => {
       taskarr[index].description = task.value;
