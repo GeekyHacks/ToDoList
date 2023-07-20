@@ -101,7 +101,7 @@ input {
 }
 
 #dotsImg:active {
-  background-image: url('../sass/trash-can.png');
+  /* background-image: url(../assets/trash-can.png); */
   background-size: 100%;
   background-repeat: no-repeat;
 }

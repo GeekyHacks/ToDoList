@@ -1,47 +1,139 @@
-import { taskarr } from './addTask.js';
-// import update from './update.js';
-// export const dots = '../assets/three-dots.png';
-const trashCan = '../assets/trash-can.png';
+// import { TaskObject, taskarr } from './userInput.js';
+// // import completedIsFalse from './removeItems.js';
 
-export const tasksList = document.querySelector('#tasksList');
+// const addBtn = document.getElementById('addBtn');
 
-export default (task) => {
-  for (let i = 0; i < taskarr.length; i += 1) {
-    task = document.createElement('li');
-    task.classList.add('newTask');
+// // TaskObject;
+// class DisplayTasks {
+//   constructor() {
+//     this.array = taskarr;
+//   }
 
-    if (taskarr[i].description !== '') {
-      task.innerHTML = `
-        <input type="checkbox" id="checkB" ${taskarr[i].completed} />
-        <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
-        <img class="dotsImg" id="dotsImg"  src="${trashCan}" alt="" />
-        `;
-    }
-    if (taskarr[i].description === '') {
-      tasksList.innerHTML = '';
-    }
+//   addTask() {
+//     addBtn.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       const addedTasks = document.querySelector('ul');
+//       const listItem = document.createElement('li');
 
-    tasksList.appendChild(task);
-  }
+//       listItem.innerHTML = `
+//               <input type="checkbox" id="checkB" />
+//               <p class="listItems" id="addItem" />${this.array.description}</p>
+//               <img id="dotsImg" src="./assets/three-dots.png" alt="" />
+//               `;
+//       addedTasks.appendChild(listItem);
+//     });
+//   }
+// }
 
-  const taskDescription = document.querySelectorAll('#addItem');
+// const input = document.querySelector('#userInput');
 
-  taskDescription.forEach((task, index) => {
-    task.addEventListener('click', (event) => {
-      task.classList.add('edit');
-      return event.preventDefault();
-    });
+// class TaskList {
+//   // tasks property will be add using the methods following
+//   constructor() {
+//     this.tasks = JSON.parse(localStorage.getItem('ToDolist')) || [];
+//   }
+//   init() {
+//     const addBtn = document.getElementById('addBtn');
+//     addBtn.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       this.addingEventListener();
+//     });
 
-    task.addEventListener('change', (event) => {
-      task.readOnly = false;
-      task.classList.remove('edit');
+//     document.getElementById('userInput').addEventListener('keypress', (event) => {
+//       if (event.key === 'Enter') {
+//         event.preventDefault();
+//         this.addingEventListener();
+//       }
+//     });
 
-      return event.preventDefault();
-    });
-    // the trick is with input
-    task.addEventListener('input', () => {
-      taskarr[index].description = task.value;
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
-    });
-  });
-};
+//     const clearBtn = document.getElementById('clearBtn');
+//     clearBtn.addEventListener('click', () => {
+//       this.clearCompleted();
+//     });
+
+//     window.addEventListener('load', () => {
+//       this.renderList();
+//     });
+//   }
+
+//   addingEventListener() {
+//     const description =
+// document.getElementById('userInput').value;
+//     if (description !== '') {
+//       const aTask = new TaskObject(description, this.tasks.length);
+//       this.renderList();
+//       document.getElementById('userInput').value = '';
+//     }
+//   }
+
+//   addTask(aTask) {
+//     this.tasks.push(aTask);
+//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
+//   }
+
+//   deleteTask(index) {
+//     this.tasks.splice(index, 1);
+//     this.renderList();
+//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
+//   }
+
+//   clearCompleted() {
+//     this.tasks = this.tasks.filter(completedIsFalse);
+//     this.renderList();
+//     localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
+//   }
+
+//   renderList() {
+//     const ul = document.querySelector('ul');
+//     ul.innerHTML = '';
+
+//     const sortedArr = [...this.tasks];
+//     sortedArr.sort((a, b) => a.index - b.index);
+
+//     for (let i = 0; i < sortedArr.length; i += 1) {
+//       this.tasks[i].index = i + 1;
+//       const input = document.querySelector('#userInput');
+//       const addedTasks = document.querySelector('ul');
+//       const listItem = document.createElement('li');
+
+//       listItem.innerHTML = `
+//       <input type="checkbox" id="checkB" />
+//       <p class="listItems" id="addItem" />${this.tasks[i].description}</p>
+//       <img id="dotsImg" src="./assets/three-dots.png" alt="" />
+//       `;
+//       addedTasks.appendChild(listItem);
+
+//       input.addEventListener('click', () => {
+//         document.querySelectorAll('li').forEach((element) => {
+//           element.classList.remove('onEdit');
+//         });
+//         listItem.classList.add('onEdit');
+//       });
+
+//       input.addEventListener('blur', () => {
+//         document.querySelectorAll('li').forEach((element) => {
+//           element.classList.remove('onEdit');
+//         });
+//       });
+//       input.value = `${sortedArr[i].description}`;
+//       input.addEventListener('keyup', () => {
+//         sortedArr[i].description = input.value;
+//         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
+//       });
+
+//       addedTasks.appendChild(listItem);
+//       const checkBox = document.querySelector('#checkB');
+
+//       checkBox.addEventListener('change', () => {
+//         if (this.checked) {
+//           this.tasks[i].completed = true;
+//         } else {
+//           this.tasks[i].completed = false;
+//         }
+//         localStorage.setItem('ToDolist', JSON.stringify(this.tasks));
+//       });
+//     }
+//   }
+// }
+
+// export default DisplayTasks;
