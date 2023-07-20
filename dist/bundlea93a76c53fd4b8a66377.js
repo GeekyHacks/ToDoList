@@ -64,7 +64,7 @@ var tasksList = document.querySelector('#tasksList');
     task = document.createElement('li');
     task.classList.add('newTask');
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
-      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"trash\" id=\"trash\"  src='./assets/trash-can.png' alt=\"\" />\n     \n        ");
+      task.innerHTML = "\n        <input type=\"checkbox\" class=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"trash\" id=\"trash\"  src='./assets/trash-can.png' alt=\"\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src='./assets/three-dots.png' alt=\"\" />\n        ");
     }
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description === '') {
       tasksList.innerHTML = '';
@@ -107,6 +107,28 @@ __webpack_require__.r(__webpack_exports__);
   var i = index;
   while (i < taskarr.length) {
     taskarr[i].index = i;
+    i += 1;
+  }
+  return taskarr;
+});
+
+/***/ }),
+
+/***/ "./src/modules/updateStatus.js":
+/*!*************************************!*\
+  !*** ./src/modules/updateStatus.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (taskarr, completed) {
+  taskarr.splice(completed, 0, true);
+  var i = completed;
+  while (i < taskarr.length) {
+    taskarr[i].completed = i;
     i += 1;
   }
   return taskarr;
@@ -886,12 +908,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
 /* harmony import */ var _assets_three_dots_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/three-dots.png */ "./src/assets/three-dots.png");
 /* harmony import */ var _modules_removeItems_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/removeItems.js */ "./src/modules/removeItems.js");
+/* harmony import */ var _modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/updateStatus.js */ "./src/modules/updateStatus.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 
 
 
@@ -940,6 +964,7 @@ userInput.addEventListener('keypress', function (event) {
 // remove tasks
 document.addEventListener('click', function (event) {
   var dotsTrash = document.querySelectorAll('.dotsImg');
+  var checkB = document.querySelectorAll('.checkB');
   dotsTrash.forEach(function (icon, index) {
     if (event.target === icon) {
       (0,_modules_removeItems_js__WEBPACK_IMPORTED_MODULE_7__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_4__.taskarr, index);
@@ -955,6 +980,15 @@ document.addEventListener('click', function (event) {
       localStorage.setItem('taskarr', JSON.stringify(sortedArr));
     }
   });
+  checkB.forEach(function (checkbox, completed) {
+    if (event.target === checkbox) {
+      (0,_modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_4__.taskarr, completed);
+      localStorage.setItem('taskarr', JSON.stringify(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_4__.taskarr));
+
+      // reloading();
+    }
+  });
+
   // return event.preventDefault();
 });
 
@@ -967,4 +1001,4 @@ clearAllBtn.addEventListener('click', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle55df76a2dc1d3425b0a3.js.map
+//# sourceMappingURL=bundlea93a76c53fd4b8a66377.js.map

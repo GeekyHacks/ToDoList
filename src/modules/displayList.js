@@ -13,7 +13,7 @@ export default (task) => {
 
     if (taskarr[i].description !== '') {
       task.innerHTML = `
-        <input type="checkbox" id="checkB" ${taskarr[i].completed} />
+        <input type="checkbox" class="checkB" ${taskarr[i].completed} />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
         <img class="trash" id="trash"  src='./assets/trash-can.png' alt="" />
         <img class="dotsImg" id="dotsImg"  src='./assets/three-dots.png' alt="" />
@@ -26,7 +26,28 @@ export default (task) => {
     tasksList.appendChild(task);
   }
 
+  const lis = document.querySelectorAll('.newTask');
   const taskDescription = document.querySelectorAll('#addItem');
+  const dots = document.querySelectorAll('.dotsImg');
+  const trashs = document.querySelectorAll('.trash');
+
+  lis.forEach((li) => {
+    li.addEventListener('click', () => {
+  
+        dots.forEach((dot) => {
+          dot.classList.add('hide');
+     
+          trashs.forEach((can) => {
+            can.classList.add('show');
+          });
+        });
+ 
+    });
+  });
+
+  dots.forEach((dot) => {
+    dot.classList.add('hide');
+  });
 
   taskDescription.forEach((task, index) => {
     task.addEventListener('click', (event) => {
