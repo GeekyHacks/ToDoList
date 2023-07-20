@@ -54,14 +54,14 @@ __webpack_require__.r(__webpack_exports__);
 
 // import update from './update.js';
 // export const dots = '../assets/three-dots.png';
-var trashCan = '../assets/trash-can.png';
+var trashCan = './assets/trash-can.png';
 var tasksList = document.querySelector('#tasksList');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (task) {
   for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i += 1) {
     task = document.createElement('li');
     task.classList.add('newTask');
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
-      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src=\"").concat(trashCan, "\" alt=\"\" />\n        \n        ");
+      task.innerHTML = "\n        <input type=\"checkbox\" id=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src=\"").concat(trashCan, "\" alt=\"\" />\n\n        ");
     }
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description === '') {
       tasksList.innerHTML = '';
@@ -964,4 +964,4 @@ clearAllBtn.addEventListener('click', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundled59409224243ec0cef1d.js.map
+//# sourceMappingURL=bundlefeb2007262080587714a.js.map
