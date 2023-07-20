@@ -15,6 +15,7 @@ export default (task) => {
         <input type="checkbox" id="checkB" ${taskarr[i].completed} />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
         <img class="dotsImg" id="dotsImg"  src="${trashCan}" alt="" />
+        
         `;
     }
     if (taskarr[i].description === '') {
