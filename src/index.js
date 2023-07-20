@@ -1,6 +1,7 @@
 import './styles/sass/main.sass';
 import './assets/refresh.png';
 import './assets/enter.png';
+import './assets/trash-can.png';
 import { addTask, taskarr } from './modules/addTask.js';
 import renderList from './modules/displayList.js';
 import './assets/three-dots.png';
