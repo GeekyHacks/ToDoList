@@ -1,4 +1,4 @@
-import TaskObject from './userInput.js';
+import { TaskObject, saveData } from './userInput.js';
 // import { renderList } from './displayList.js';
 
 export const taskarr = JSON.parse(localStorage.getItem('taskarr')) || [];
@@ -10,7 +10,7 @@ export const addTask = (description, index) => {
   // this will sort out the  user input index
   const sortedArr = [...taskarr];
   sortedArr.sort((a, b) => a.index - b.index);
-
-  localStorage.setItem('taskarr', JSON.stringify(sortedArr));
+  saveData(sortedArr);
+  // localStorage.setItem('taskarr', JSON.stringify(sortedArr));
   return taskarr;
 };

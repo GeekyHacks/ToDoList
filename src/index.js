@@ -6,11 +6,11 @@ import { addTask, taskarr } from './modules/addTask.js';
 import renderList from './modules/displayList.js';
 import './assets/three-dots.png';
 import removeItems from './modules/removeItems.js';
-import { completedUpdate } from './modules/updateStatus.js';
-
+import TaskStatus from './modules/updateStatus.js';
+import { saveData } from './modules/userInput';
+import sortArray from './modules/sortingFunction';
 const userInput = document.querySelector('#userInput');
 const addBtn = document.querySelector('#addBtn');
-const clearAllBtn = document.querySelector('#clearAllBtn');
 // const dots = document.querySelectorAll('.dotsImg');
 // const trash = document.querySelectorِ('.trash');
 // to reload the page this should fix the double rendering issue
@@ -20,10 +20,13 @@ const clearAllBtn = document.querySelector('#clearAllBtn');
 // const onLoad = () => {
 //   trash.style.display = 'none';
 // };
+renderList(taskarr);
 const reloading = () => {
   setInterval(document.location.reload());
 };
 
+TaskStatus.updateStatus();
+TaskStatus.clearCompleted();
 // add tasks
 addBtn.addEventListener('click', (event) => {
   const description = userInput.value;
@@ -46,51 +49,51 @@ userInput.addEventListener('keypress', (event) => {
     addTask(description, index);
     reloading();
     event.preventDefault();
-    localStorage.setItem('taskarr', JSON.stringify(taskarr));
+    saveData(taskarr);
+    // localStorage.setItem('taskarr', JSON.stringify(taskarr));
     return taskarr;
   }
   return taskarr;
 });
 
-renderList(taskarr);
-
 // remove tasks
 document.addEventListener('click', (event) => {
-  const dotsTrash = document.querySelectorAll('.dotsImg');
+  const dotsTrash = document.querySelectorAll('.trash');
 
   dotsTrash.forEach((icon, index) => {
     if (event.target === icon) {
       removeItems(taskarr, index);
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
+      saveData(taskarr);
 
       // this will sort out the index when removing Items
-      const sortedArr = [...taskarr];
-      index = taskarr.length;
-      sortedArr.sort((a, b) => a.index - b.index);
-
+      // const sortedArr = [...taskarr];
+      // index = taskarr.length;
+      // sortedArr.sort((a, b) => a.index - b.index);
+      sortArray(taskarr);
       reloading(sortedArr);
-      localStorage.setItem('taskarr', JSON.stringify(sortedArr));
+      saveData(sortedArr);
+      // localStorage.setItem('taskarr', JSON.stringify(sortedArr));
     }
   });
 
   // return event.preventDefault();
 });
 
-const checkBs = document.querySelectorAll('.checkB');
+// const checkBs = document.querySelectorAll('.checkB');
 // checkBs.addEventListener('change', (event) => {
 
 //     completedUpdate( event);
 
 // });
-checkBs.forEach((checkbox) => {
-  checkbox.addEventListener('change', (event) => {
-
-    completedUpdate(checkbox);
-  });
-});
+// checkBs.forEach((checkbox) => {
+//   checkbox.addEventListener('change', (event) => {
+//     completedUpdate(checkbox);
+//     localStorage.setItem('taskarr',JSON.stringify(taskarr));
+//   });
+// });
 
 // // this will clear all localstorage elements too, just temproary
-clearAllBtn.addEventListener('click', () => {
-  window.localStorage.clear();
-  reloading();
-});
+// clearAllBtn.addEventListener('click', () => {
+//   window.localStorage.clear();
+//   reloading();
+// });

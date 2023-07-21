@@ -1,45 +1,83 @@
 import { taskarr } from './addTask.js';
-console.log(taskarr);
+import {saveData} from './userInput.js';
 
-export const completedUpdate = ( test, index) => {
-   test = taskarr;
-  let notSelected = test.filter((item) => {
-    if (!item.completed) {
-      item.completed = true;
 
-      return taskarr;
+export default class TaskStatus {
+    static updateStatus = () => {
+      const checkB = document.querySelectorAll('.checkB');
+
+      checkB.forEach((checkbox, i) => {
+        checkbox.addEventListener('change', () => {
+        
+          if (!taskarr[i].completed) {
+          
+            taskarr[i].completed = true;
+            saveData(taskarr);
+            checkbox.nextElementSibling.classList.add('completed');
+          } else {
+            taskarr[i].completed = false;
+            saveData(taskarr);
+            checkbox.nextElementSibling.classList.remove('completed');
+          }
+        });
+      });
+    };
+
+    // clearAllBtn.addEventListener('click', () => {
+    //   window.localStorage.clear();
+    //   reloading();
+    // });
+    
+
+
+
+    static clearCompleted = () => {
+      const clearAllBtn = document.querySelector('#clearAllBtn');
+      clearAllBtn.addEventListener('click', () => {
+        const notCompleted = taskarr.filter((task) => task.completed !== true);
+        notCompleted.forEach((e, i) => {
+          e.index = i + 1;
+        });
+        saveData(notCompleted);
+        window.location.reload();
+      });
     }
-return  item.completed = false;
-  });
-
-  if (notSelected) {
-    localStorage.setItem('taskarr', JSON.stringify(test));
-    }
+}
 
 
-  let i = index;
-  while (i < taskarr.length) {
-    // localStorage.setItem('taskarr', JSON.stringify(test));
-    taskarr[i].index = i;
-    i += 1;
-  }
 
+
+
+
+
+
+
+
+// export const completedUpdate = (test, index) => {
+//   test = taskarr;
+//   let notSelected = test.filter((item) => {
+//     if (!item.completed) {
+//       item.completed = true;
+
+//       return taskarr;
+//     }
+//     return (item.completed = false);
+//   });
+
+//   if (notSelected) {
+//     // taskarr.splice(index, 1);
  
-  console.log(taskarr);
-  return taskarr;
-};
+//     return taskarr;
+//   }
+//   let i = index;
 
-// export const update = () => {
-//   let test = taskarr;
-//   let filtered = test.filter((item) => item.completed === false);
-//   console.log(filtered);
-//   let y = filtered.map((item) => (item.completed = true));
-//   console.log(y);
-//   localStorage.setItem('taskarr', JSON.stringify(taskarr));
+//   while (i < taskarr.length) {
+//     taskarr[i].index = i;
+//     i += 1;
+//   }
+
+//   // localStorage.setItem('taskarr', JSON.stringify(taskarr));
+
+//   console.log(taskarr);
 //   return taskarr;
 // };
-
-// const task = taskarr[task];
-// const completedIsFalse = (task) => task.completed === true;
-// console.log(task);
-// export default completedIsFalse;
