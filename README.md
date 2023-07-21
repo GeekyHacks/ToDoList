@@ -14,8 +14,8 @@
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-
   - [🚀 Live Demo](#live-demo)
+
 
   - [🛠 Built With](#built-with)
     - [Key Features](#key-features)
@@ -37,11 +37,12 @@
 **ToDo list<e**
 the project is about adding todo list that can be add, removed, marked, and edit. It will include mainly JS code and sass or styling.
 
+
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo Link](https://geekyhacks.github.io/ToDoList/dist/.)
 
-
+# 📖 ToDo list< <a name="live-demo"></a>
 
 ## 🛠 Built With <a name="built-with">HTML, CSS and JavaScript</a>
 
