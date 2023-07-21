@@ -1,8 +1,5 @@
 import { taskarr } from './addTask.js';
-// import update from './update.js';
-// export const dots = '../assets/three-dots.png';
 import '../assets/trash-can.png';
-// const trashCan = './assets/trash-can.png';
 import { saveData } from './userInput.js';
 
 export const tasksList = document.querySelector('#tasksList');
