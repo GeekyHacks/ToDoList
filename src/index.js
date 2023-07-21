@@ -50,7 +50,7 @@ userInput.addEventListener('keypress', (event) => {
     reloading();
     event.preventDefault();
     saveData(taskarr);
-    // localStorage.setItem('taskarr', JSON.stringify(taskarr));
+
     return taskarr;
   }
   return taskarr;
@@ -66,34 +66,12 @@ document.addEventListener('click', (event) => {
       saveData(taskarr);
 
       // this will sort out the index when removing Items
-      // const sortedArr = [...taskarr];
-      // index = taskarr.length;
-      // sortedArr.sort((a, b) => a.index - b.index);
-      sortArray(taskarr);
-      reloading(sortedArr);
-      saveData(sortedArr);
-      // localStorage.setItem('taskarr', JSON.stringify(sortedArr));
+      const sortedArr = [...taskarr];
+      index = taskarr.length + 1;
+      sortedArr.sort((a, b) => a.index - b.index);
+
+      reloading(taskarr);
+      // saveData(sortedArr);
     }
   });
-
-  // return event.preventDefault();
 });
-
-// const checkBs = document.querySelectorAll('.checkB');
-// checkBs.addEventListener('change', (event) => {
-
-//     completedUpdate( event);
-
-// });
-// checkBs.forEach((checkbox) => {
-//   checkbox.addEventListener('change', (event) => {
-//     completedUpdate(checkbox);
-//     localStorage.setItem('taskarr',JSON.stringify(taskarr));
-//   });
-// });
-
-// // this will clear all localstorage elements too, just temproary
-// clearAllBtn.addEventListener('click', () => {
-//   window.localStorage.clear();
-//   reloading();
-// });

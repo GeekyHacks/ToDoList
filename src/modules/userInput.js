@@ -1,4 +1,4 @@
-export  class TaskObject {
+export class TaskObject {
   constructor(description, index) {
     this.description = description;
     this.completed = false;

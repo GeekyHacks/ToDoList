@@ -76,8 +76,6 @@ export default (task) => {
     task.addEventListener('input', () => {
       taskarr[index].description = task.value;
       saveData(taskarr);
-
-      // localStorage.setItem('taskarr', JSON.stringify(taskarr));
     });
   });
 };
