@@ -1,8 +1,6 @@
 import { taskarr } from './addTask.js';
-// import update from './update.js';
-// export const dots = '../assets/three-dots.png';
 import '../assets/trash-can.png';
-// const trashCan = './assets/trash-can.png';
+import { saveData } from './userInput.js';
 
 export const tasksList = document.querySelector('#tasksList');
 
@@ -13,10 +11,10 @@ export default (task) => {
 
     if (taskarr[i].description !== '') {
       task.innerHTML = `
-        <input type="checkbox" id="checkB" ${taskarr[i].completed} />
+        <input type="checkbox" class="checkB" ${taskarr[i].completed} autocomplete="off" />
         <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
         <img class="trash" id="trash"  src='./assets/trash-can.png' alt="" />
-     
+        <img class="dotsImg" id="dotsImg"  src='./assets/three-dots.png' alt="" />
         `;
     }
     if (taskarr[i].description === '') {
@@ -26,7 +24,13 @@ export default (task) => {
     tasksList.appendChild(task);
   }
 
+  // const lis = document.querySelectorAll('.newTask');
   const taskDescription = document.querySelectorAll('#addItem');
+  const dots = document.querySelectorAll('.dotsImg');
+
+  dots.forEach((dot) => {
+    dot.classList.add('hide');
+  });
 
   taskDescription.forEach((task, index) => {
     task.addEventListener('click', (event) => {
@@ -43,7 +47,7 @@ export default (task) => {
     // the trick is with input
     task.addEventListener('input', () => {
       taskarr[index].description = task.value;
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
+      saveData(taskarr);
     });
   });
 };

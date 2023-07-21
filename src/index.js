@@ -6,16 +6,19 @@ import { addTask, taskarr } from './modules/addTask.js';
 import renderList from './modules/displayList.js';
 import './assets/three-dots.png';
 import removeItems from './modules/removeItems.js';
-
+import { TaskStatus, recallChecked } from './modules/updateStatus.js';
+import { saveData } from './modules/userInput.js';
 const userInput = document.querySelector('#userInput');
 const addBtn = document.querySelector('#addBtn');
-const clearAllBtn = document.querySelector('#clearAllBtn');
 
-// to reload the page this should fix the double rendering issue
+renderList(taskarr);
 const reloading = () => {
   setInterval(document.location.reload());
 };
 
+TaskStatus.updateStatus();
+// TaskStatus.recallChecked();
+TaskStatus.clearCompleted();
 // add tasks
 addBtn.addEventListener('click', (event) => {
   const description = userInput.value;
@@ -38,35 +41,29 @@ userInput.addEventListener('keypress', (event) => {
     addTask(description, index);
     reloading();
     event.preventDefault();
-    localStorage.setItem('taskarr', JSON.stringify(taskarr));
+    saveData(taskarr);
+
     return taskarr;
   }
   return taskarr;
 });
-renderList(taskarr);
 
 // remove tasks
 document.addEventListener('click', (event) => {
-  const dotsTrash = document.querySelectorAll('.dotsImg');
+  const dotsTrash = document.querySelectorAll('.trash');
+
   dotsTrash.forEach((icon, index) => {
     if (event.target === icon) {
       removeItems(taskarr, index);
-      localStorage.setItem('taskarr', JSON.stringify(taskarr));
+      saveData(taskarr);
 
       // this will sort out the index when removing Items
       const sortedArr = [...taskarr];
-      index = taskarr.length;
+      index = taskarr.length + 1;
       sortedArr.sort((a, b) => a.index - b.index);
 
-      reloading(sortedArr);
-      localStorage.setItem('taskarr', JSON.stringify(sortedArr));
+      reloading(taskarr);
+      saveData(sortedArr);
     }
   });
-  // return event.preventDefault();
-});
-
-// // this will clear all localstorage elements too, just temproary
-clearAllBtn.addEventListener('click', () => {
-  window.localStorage.clear();
-  reloading();
 });
