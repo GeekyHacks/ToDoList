@@ -7,19 +7,11 @@ import renderList from './modules/displayList.js';
 import './assets/three-dots.png';
 import removeItems from './modules/removeItems.js';
 import TaskStatus from './modules/updateStatus.js';
-import { saveData } from './modules/userInput';
-import sortArray from './modules/sortingFunction';
+import { saveData } from './modules/userInput.js';
+
 const userInput = document.querySelector('#userInput');
 const addBtn = document.querySelector('#addBtn');
-// const dots = document.querySelectorAll('.dotsImg');
-// const trash = document.querySelectorِ('.trash');
-// to reload the page this should fix the double rendering issue
 
-// window.onload(onLoad());
-
-// const onLoad = () => {
-//   trash.style.display = 'none';
-// };
 renderList(taskarr);
 const reloading = () => {
   setInterval(document.location.reload());
@@ -71,7 +63,7 @@ document.addEventListener('click', (event) => {
       sortedArr.sort((a, b) => a.index - b.index);
 
       reloading(taskarr);
-      // saveData(sortedArr);
+      saveData(sortedArr);
     }
   });
 });

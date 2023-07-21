@@ -3,8 +3,8 @@ import { taskarr } from './addTask.js';
 // export const dots = '../assets/three-dots.png';
 import '../assets/trash-can.png';
 // const trashCan = './assets/trash-can.png';
-import { completedUpdate } from './updateStatus.js';
 import { saveData } from './userInput.js';
+
 export const tasksList = document.querySelector('#tasksList');
 
 export default (task) => {
@@ -30,31 +30,6 @@ export default (task) => {
   // const lis = document.querySelectorAll('.newTask');
   const taskDescription = document.querySelectorAll('#addItem');
   const dots = document.querySelectorAll('.dotsImg');
-  // const trashs = document.querySelectorAll('.trash');
-  // const checkBs = document.querySelectorAll('.checkB');
-
-  // checkBs.forEach((task, checkbox, index) => {
-  //   checkbox.addEventListener('change', () => {
-  //     taskarr[index].completed = true;
-  //     completedUpdate(taskarr, index);
-  //     saveData(task);
-  //     // localStorage.setItem('taskarr',JSON.stringify(task));
-  //   });
-  // });
-
-  // lis.forEach((li) => {
-  //   li.addEventListener('click', () => {
-
-  //       dots.forEach((dot) => {
-  //         // dot.classList.add('hide');
-
-  //         trashs.forEach((can) => {
-  //           // can.classList.add('show');
-  //         });
-  //       });
-
-  //   });
-  // });
 
   dots.forEach((dot) => {
     dot.classList.add('hide');
