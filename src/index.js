@@ -13,14 +13,17 @@ const addBtn = document.querySelector('#addBtn');
 const refresh = document.querySelector('#recyclImg');
 
 renderList(taskarr);
+// this is to reload the page whenever needed
 const reloading = () => {
   setInterval(document.location.reload());
 };
 
+// this is for the refresh icon 
 refresh.addEventListener('click', () => reloading());
 
 TaskStatus.updateStatus();
 TaskStatus.clearCompleted();
+
 // add tasks
 addBtn.addEventListener('click', (event) => {
   const description = userInput.value;
