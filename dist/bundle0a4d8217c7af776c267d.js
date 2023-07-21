@@ -60,7 +60,7 @@ var tasksList = document.querySelector('#tasksList');
     task = document.createElement('li');
     task.classList.add('newTask');
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
-      task.innerHTML = "\n        <input type=\"checkbox\" class=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"trash\" id=\"trash\"  src='./assets/trash-can.png' alt=\"\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src='./assets/three-dots.png' alt=\"\" />\n        ");
+      task.innerHTML = "\n        <input type=\"checkbox\" class=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " autocomplete=\"off\" />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"trash\" id=\"trash\"  src='./assets/trash-can.png' alt=\"\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src='./assets/three-dots.png' alt=\"\" />\n        ");
     }
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description === '') {
       tasksList.innerHTML = '';
@@ -128,6 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
 /* harmony import */ var _userInput_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userInput.js */ "./src/modules/userInput.js");
+/* harmony import */ var _displayList_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./displayList.js */ "./src/modules/displayList.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -137,21 +138,35 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
+
 var TaskStatus = /*#__PURE__*/_createClass(function TaskStatus() {
   _classCallCheck(this, TaskStatus);
-});
+}); // // start by retrieving the current state
+// document.ready(() => {
+//   let isChecked = localStorage.getItem('checkedbox');
+//   // now set it
+//   $('#check').prop('checked', isChecked);
+// });
+// $('#check').on('click', function () {
+//   localStorage.setItem('checkedbox', $(this).prop('checked'));
+//   // if you really want to submit the form when someone checks it...
+//   $('form').submit();
+// });
 _defineProperty(TaskStatus, "updateStatus", function () {
   var checkB = document.querySelectorAll('.checkB');
   checkB.forEach(function (checkbox, i) {
     checkbox.addEventListener('change', function () {
       if (!_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed) {
         _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed = true;
+        // checkbox.classList.add('edit');
+        checkbox = true;
+        localStorage.setItem('checked', JSON.stringify(checkbox));
         (0,_userInput_js__WEBPACK_IMPORTED_MODULE_1__.saveData)(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr);
-        checkbox.nextElementSibling.classList.add('completed');
       } else {
         _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed = false;
+        checkbox['checked'] = false;
         (0,_userInput_js__WEBPACK_IMPORTED_MODULE_1__.saveData)(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr);
-        checkbox.nextElementSibling.classList.remove('completed');
+        // checkbox.nextElementSibling.classList.remove('completed');
       }
     });
   });
@@ -986,6 +1001,7 @@ var addBtn = document.querySelector('#addBtn');
 (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_5__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_4__.taskarr);
 var reloading = function reloading() {
   setInterval(document.location.reload());
+  localStorage.getItem('checked');
 };
 _modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__["default"].updateStatus();
 _modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__["default"].clearCompleted();
@@ -1039,4 +1055,4 @@ document.addEventListener('click', function (event) {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle6bd517016aac162b28b3.js.map
+//# sourceMappingURL=bundle0a4d8217c7af776c267d.js.map

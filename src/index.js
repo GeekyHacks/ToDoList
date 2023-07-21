@@ -6,9 +6,8 @@ import { addTask, taskarr } from './modules/addTask.js';
 import renderList from './modules/displayList.js';
 import './assets/three-dots.png';
 import removeItems from './modules/removeItems.js';
-import TaskStatus from './modules/updateStatus.js';
+import { TaskStatus, recallChecked } from './modules/updateStatus.js';
 import { saveData } from './modules/userInput.js';
-
 const userInput = document.querySelector('#userInput');
 const addBtn = document.querySelector('#addBtn');
 
@@ -18,6 +17,7 @@ const reloading = () => {
 };
 
 TaskStatus.updateStatus();
+// TaskStatus.recallChecked();
 TaskStatus.clearCompleted();
 // add tasks
 addBtn.addEventListener('click', (event) => {
