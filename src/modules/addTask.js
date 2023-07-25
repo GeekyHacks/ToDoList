@@ -6,7 +6,7 @@ export const addTask = (description, index) => {
   index = taskarr.length;
   const newTask = new TaskObject(description, index);
   taskarr.push(newTask);
-  // // this will sort out the  user input index
+  // this will sort out the  user input index
   const sortedArr = [...taskarr];
   sortedArr.sort((a, b) => a.index - b.index);
 
@@ -14,14 +14,12 @@ export const addTask = (description, index) => {
   return taskarr;
 };
 
-
-
 var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {};
-var $checkboxes = $("#checkbox-container :checkbox");
+var $checkboxes = $('#checkbox-container :checkbox');
 
-$checkboxes.on("change", function(){
-  $checkboxes.each(function(){
+$checkboxes.on('change', function () {
+  $checkboxes.each(function () {
     checkboxValues[this.id] = this.checked;
   });
-  localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+  localStorage.setItem('checkboxValues', JSON.stringify(checkboxValues));
 });

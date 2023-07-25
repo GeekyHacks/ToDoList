@@ -26,7 +26,7 @@ var addTask = function addTask(description, index) {
   index = taskarr.length;
   var newTask = new _userInput_js__WEBPACK_IMPORTED_MODULE_0__.TaskObject(description, index);
   taskarr.push(newTask);
-  // // this will sort out the  user input index
+  // this will sort out the  user input index
   var sortedArr = _toConsumableArray(taskarr);
   sortedArr.sort(function (a, b) {
     return a.index - b.index;
@@ -34,6 +34,14 @@ var addTask = function addTask(description, index) {
   (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.saveData)(taskarr);
   return taskarr;
 };
+var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {};
+var $checkboxes = $('#checkbox-container :checkbox');
+$checkboxes.on('change', function () {
+  $checkboxes.each(function () {
+    checkboxValues[this.id] = this.checked;
+  });
+  localStorage.setItem('checkboxValues', JSON.stringify(checkboxValues));
+});
 
 /***/ }),
 
@@ -59,21 +67,18 @@ var tasksList = document.querySelector('#tasksList');
   for (var i = 0; i < _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr.length; i += 1) {
     task = document.createElement('li');
     task.classList.add('newTask');
-    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '') {
-      task.innerHTML = "\n        <input type=\"checkbox\" class=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " autocomplete=\"off\" />\n        <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n        <img class=\"trash\" id=\"trash\"  src='./assets/trash-can.png' alt=\"\" />\n        <img class=\"dotsImg\" id=\"dotsImg\"  src='./assets/three-dots.png' alt=\"\" />\n        ");
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '' && _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed === true) {
+      task.innerHTML = "\n      <input type=\"checkbox\" checked class=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, " autocomplete=\"false\"  />\n      <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n      <img class=\"trash\" id=\"trash\"  src='./assets/trash-can.png' alt=\"\" />\n   \n      ");
+    }
+    if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description !== '' && _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed === false) {
+      task.innerHTML = "\n      <input type=\"checkbox\" class=\"checkB\" ".concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed, "  />\n      <input class=\"newTasks\" type=\"text\" id=\"addItem\" value=\"").concat(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description, "\" />\n      <img class=\"trash\" id=\"trash\"  src='/assets/three-dots.png' alt=\"\" />\n      ");
     }
     if (_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].description === '') {
       tasksList.innerHTML = '';
     }
     tasksList.appendChild(task);
   }
-
-  // const lis = document.querySelectorAll('.newTask');
   var taskDescription = document.querySelectorAll('#addItem');
-  var dots = document.querySelectorAll('.dotsImg');
-  dots.forEach(function (dot) {
-    dot.classList.add('hide');
-  });
   taskDescription.forEach(function (task, index) {
     task.addEventListener('click', function (event) {
       task.classList.add('edit');
@@ -82,6 +87,7 @@ var tasksList = document.querySelector('#tasksList');
     task.addEventListener('change', function (event) {
       task.readOnly = false;
       task.classList.remove('edit');
+      RTCRtpReceiver;
       return event.preventDefault();
     });
     // the trick is with input
@@ -124,11 +130,10 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TaskStatus)
+/* harmony export */   TaskStatus: () => (/* binding */ TaskStatus)
 /* harmony export */ });
 /* harmony import */ var _addTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addTask.js */ "./src/modules/addTask.js");
 /* harmony import */ var _userInput_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userInput.js */ "./src/modules/userInput.js");
-/* harmony import */ var _displayList_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./displayList.js */ "./src/modules/displayList.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -138,35 +143,22 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
-
 var TaskStatus = /*#__PURE__*/_createClass(function TaskStatus() {
   _classCallCheck(this, TaskStatus);
-}); // // start by retrieving the current state
-// document.ready(() => {
-//   let isChecked = localStorage.getItem('checkedbox');
-//   // now set it
-//   $('#check').prop('checked', isChecked);
-// });
-// $('#check').on('click', function () {
-//   localStorage.setItem('checkedbox', $(this).prop('checked'));
-//   // if you really want to submit the form when someone checks it...
-//   $('form').submit();
-// });
+});
 _defineProperty(TaskStatus, "updateStatus", function () {
   var checkB = document.querySelectorAll('.checkB');
   checkB.forEach(function (checkbox, i) {
     checkbox.addEventListener('change', function () {
       if (!_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed) {
         _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed = true;
-        // checkbox.classList.add('edit');
-        checkbox = true;
-        localStorage.setItem('checked', JSON.stringify(checkbox));
+        checkbox.setAttribute('checked', 'checked');
+        document.location.reload();
         (0,_userInput_js__WEBPACK_IMPORTED_MODULE_1__.saveData)(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr);
       } else {
         _addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr[i].completed = false;
-        checkbox['checked'] = false;
+        document.location.reload();
         (0,_userInput_js__WEBPACK_IMPORTED_MODULE_1__.saveData)(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr);
-        // checkbox.nextElementSibling.classList.remove('completed');
       }
     });
   });
@@ -184,7 +176,6 @@ _defineProperty(TaskStatus, "clearCompleted", function () {
     window.location.reload();
   });
 });
-
 
 /***/ }),
 
@@ -247,7 +238,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   background-color: #2fa8cc;
   font-family: "Roboto", sans-serif;
   white-space: pre-wrap;
@@ -269,6 +260,7 @@ img {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
   text-align: left;
+  width: 50%;
 }
 
 #tasksList {
@@ -387,7 +379,7 @@ input {
 
 .show {
   visibility: visible;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;AADA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,oBAAA;EACA,yBDPY;ECQZ,iCAAA;EACA,qBAAA;EACA,qBAAA;EACA,aAAA;AAKJ;;AAHA;EACI,oBAAA;AAMJ;;AALA;EDHI,aAAA;EACA,sBAAA;ECIA,uBAAA;EACA,oBAAA;EACA,yBDlBc;ECmBd,kBAAA;EACA,wEDlBS;ECmBT,aAAA;EACA,gBAAA;AASJ;;AAPA;EDbI,aAAA;EACA,sBAAA;ECcA,WAAA;AAWJ;;AAVA;EDbI,aAAA;EACA,mBAAA;ECcA,8BAAA;EACA,mBAAA;EACA,kBAAA;EAEA,SAAA;EACA,eAAA;EACA,WAAA;EACA,sBAAA;AAaJ;;AAZA;EACI,6BAAA;EACA,gBAAA;EACA,eAAA;AAeJ;;AAZI;EACI,mBD3CI;AC0DZ;;AAdA;EACI,WAAA;AAiBJ;AAhBI;EDOA,YAAA;EACA,iBAAA;EACA,gCA1DQ;EA2DR,gBAAA;EACA,yBAAA;ACYJ;;AApBA;EDUI,YAAA;EACA,iBAAA;EACA,gCAhEQ;EAiER,yBAAA;ECXA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AA0BJ;;AAxBA;EACI,cAAA;EACA,WAAA;AA2BJ;;AAxBA;EACI,SAAA;EACA,aAAA;AA2BJ;;AA1BA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AA6BJ;;AA3BA;EACI,YAAA;EACA,WAAA;EACA,YAAA;AA8BJ;AA7BI;EACI,UAAA;AA+BR;;AA9BA;EACI,mBAAA;AAiCJ;;AAhCA;EDhEI,oBAAA;EACA,kBAAA;EACA,gCArBQ;EAsBR,gBAAA;EACA,iBAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAzBY;EA0BZ,cAzBc;EA0Bd,SAAA;EACA,wEAzBS;EA0BT,YAAA;EACA,eAAA;EACA,kBAAA;ECqDA,kBAAA;AAgDJ;AA9CI;EACI,sBAAA;AAgDR;AA9CI;EACI,UAAA;AAgDR;;AA/CA;EACI,yBD1FQ;AC4IZ;;AAjDA;EACI,kBAAA;AAoDJ;;AAnDA;EACI,mBAAA;AAsDJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: .8rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 5px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: .8rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .6rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: stretch\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    padding: 3rem\r\n    // height: 100vh\r\nimg\r\n    transition: all 0.5s\r\n.container\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    text-align: left\r\n    // width: 92%\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .2rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    // margin-top: .3rem\r\n    border: 0\r\n    padding: .1rem\r\n    gap: .1rem\r\n    margin-bottom: .25rem\r\nli\r\n    justify-content: space-evenly\r\n    margin-bottom: 0\r\n    padding: .5rem\r\n\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .2rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 1.5rem\r\n    width: 100%\r\n    // margin-bottom: .3rem\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,#dotsImg,#trash\r\n    height: 1rem\r\n    width: 1rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#trash\r\n    visibility: visible\r\n#clearAllBtn\r\n    @include button\r\n    margin-top: .3rem\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    visibility: hidden\r\n.show\r\n    visibility: visible\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;AADA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDPY;ECQZ,iCAAA;EACA,qBAAA;EACA,qBAAA;EACA,aAAA;AAKJ;;AAHA;EACI,oBAAA;AAMJ;;AALA;EDHI,aAAA;EACA,sBAAA;ECIA,uBAAA;EACA,oBAAA;EACA,yBDlBc;ECmBd,kBAAA;EACA,wEDlBS;ECmBT,aAAA;EACA,gBAAA;EACA,UAAA;AASJ;;AARA;EDbI,aAAA;EACA,sBAAA;ECcA,WAAA;AAYJ;;AAXA;EDbI,aAAA;EACA,mBAAA;ECcA,8BAAA;EACA,mBAAA;EACA,kBAAA;EAEA,SAAA;EACA,eAAA;EACA,WAAA;EACA,sBAAA;AAcJ;;AAbA;EACI,6BAAA;EACA,gBAAA;EACA,eAAA;AAgBJ;;AAbI;EACI,mBD3CI;AC2DZ;;AAfA;EACI,WAAA;AAkBJ;AAjBI;EDOA,YAAA;EACA,iBAAA;EACA,gCA1DQ;EA2DR,gBAAA;EACA,yBAAA;ACaJ;;AArBA;EDUI,YAAA;EACA,iBAAA;EACA,gCAhEQ;EAiER,yBAAA;ECXA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AA2BJ;;AAzBA;EACI,cAAA;EACA,WAAA;AA4BJ;;AAzBA;EACI,SAAA;EACA,aAAA;AA4BJ;;AA3BA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AA8BJ;;AA5BA;EACI,YAAA;EACA,WAAA;EACA,YAAA;AA+BJ;AA9BI;EACI,UAAA;AAgCR;;AA/BA;EACI,mBAAA;AAkCJ;;AAjCA;EDhEI,oBAAA;EACA,kBAAA;EACA,gCArBQ;EAsBR,gBAAA;EACA,iBAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAzBY;EA0BZ,cAzBc;EA0Bd,SAAA;EACA,wEAzBS;EA0BT,YAAA;EACA,eAAA;EACA,kBAAA;ECqDA,kBAAA;AAiDJ;AA/CI;EACI,sBAAA;AAiDR;AA/CI;EACI,UAAA;AAiDR;;AAhDA;EACI,yBD1FQ;AC6IZ;;AAlDA;EACI,kBAAA;AAqDJ;;AApDA;EACI,mBAAA;AAuDJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: .8rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 5px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: .8rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .6rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    padding: 3rem\r\n    // height: 100vh\r\nimg\r\n    transition: all 0.5s\r\n.container\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    text-align: left\r\n    width: 50%\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .2rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    // margin-top: .3rem\r\n    border: 0\r\n    padding: .1rem\r\n    gap: .1rem\r\n    margin-bottom: .25rem\r\nli\r\n    justify-content: space-evenly\r\n    margin-bottom: 0\r\n    padding: .5rem\r\n\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .2rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 1.5rem\r\n    width: 100%\r\n    // margin-bottom: .3rem\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,#dotsImg,#trash\r\n    height: 1rem\r\n    width: 1rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#trash\r\n    visibility: visible\r\n#clearAllBtn\r\n    @include button\r\n    margin-top: .3rem\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    visibility: hidden\r\n.show\r\n    visibility: visible\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -998,13 +990,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var userInput = document.querySelector('#userInput');
 var addBtn = document.querySelector('#addBtn');
+var refresh = document.querySelector('#recyclImg');
 (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_5__["default"])(_modules_addTask_js__WEBPACK_IMPORTED_MODULE_4__.taskarr);
+// this is to reload the page whenever needed
 var reloading = function reloading() {
   setInterval(document.location.reload());
-  localStorage.getItem('checked');
 };
-_modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__["default"].updateStatus();
-_modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__["default"].clearCompleted();
+
+// this is for the refresh icon 
+refresh.addEventListener('click', function () {
+  return reloading();
+});
+_modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__.TaskStatus.updateStatus();
+_modules_updateStatus_js__WEBPACK_IMPORTED_MODULE_8__.TaskStatus.clearCompleted();
+
 // add tasks
 addBtn.addEventListener('click', function (event) {
   var description = userInput.value;
@@ -1055,4 +1054,4 @@ document.addEventListener('click', function (event) {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle0a4d8217c7af776c267d.js.map
+//# sourceMappingURL=bundlea8a18bec0d8835a1959a.js.map
