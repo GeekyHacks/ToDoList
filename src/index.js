@@ -10,15 +10,20 @@ import { TaskStatus, recallChecked } from './modules/updateStatus.js';
 import { saveData } from './modules/userInput.js';
 const userInput = document.querySelector('#userInput');
 const addBtn = document.querySelector('#addBtn');
+const refresh = document.querySelector('#recyclImg');
 
 renderList(taskarr);
+// this is to reload the page whenever needed
 const reloading = () => {
   setInterval(document.location.reload());
 };
 
+// this is for the refresh icon 
+refresh.addEventListener('click', () => reloading());
+
 TaskStatus.updateStatus();
-// TaskStatus.recallChecked();
 TaskStatus.clearCompleted();
+
 // add tasks
 addBtn.addEventListener('click', (event) => {
   const description = userInput.value;
