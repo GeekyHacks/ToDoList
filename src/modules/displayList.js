@@ -13,7 +13,7 @@ export default (task) => {
       task.innerHTML = `
       <input type="checkbox" checked class="checkB" ${taskarr[i].completed} autocomplete="false"  />
       <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
-      <img class="trash" id="trash"  src='./assets/trash-can.png' alt="" />
+      <img class="trash" id="trash"  src="./assets/trash-can.png" alt="" />
    
       `;
     }
@@ -21,7 +21,7 @@ export default (task) => {
       task.innerHTML = `
       <input type="checkbox" class="checkB" ${taskarr[i].completed}  />
       <input class="newTasks" type="text" id="addItem" value="${taskarr[i].description}" />
-      <img class="trash" id="trash"  src='/assets/three-dots.png' alt="" />
+      <img class="trash" id="trash"  src="./assets/three-dots.png" alt="" />
       `;
     }
 
