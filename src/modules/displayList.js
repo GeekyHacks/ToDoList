@@ -37,20 +37,27 @@ export default (task) => {
   taskDescription.forEach((task, index) => {
     task.addEventListener('click', (event) => {
       task.classList.add('edit');
-      return event.preventDefault();
+      // if (event === false) {
+      //   taskDescription.parentElement.addEventListener('click', () => task.classList.remove('edit'));
+      // }
+      return event.preventDefault(task.classList.remove('edit'));
     });
 
     task.addEventListener('change', (event) => {
+      event.preventDefault();
       task.readOnly = false;
       task.classList.remove('edit');
-      RTCRtpReceiver;
+      // RTCRtpReceiver;
 
       return event.preventDefault();
     });
     // the trick is with input
-    task.addEventListener('input', () => {
+    task.addEventListener('input', (event) => {
+      event.preventDefault();
       taskarr[index].description = task.value;
       saveData(taskarr);
     });
   });
+
+  // taskDescription.parentElement.addEventListener('click', () => task.classList.remove('edit'));
 };
