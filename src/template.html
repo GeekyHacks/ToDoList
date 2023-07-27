@@ -9,35 +9,22 @@
     <title>%= htmlWebpackPlugin.options.title %</title>
   </head>
   <body>
+    <header><h1>ToDo List</h1></header>
     <main class="container">
-      <div>
-        <h1 for="cars">ToDo List:</h1>
-        <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
-      </div>
-      <div>
-        <input id="userInput" type="text" placeholder="Add to the list" required autofocus />
-        <img id="addBtn" alt="add new task" src="./assets/enter.png" />
-      </div>
-
-      <ul id="tasksList"></ul>
-
+      <ul id="tasksList">
+        <li>
+          <h2>Add Task:</h2>
+          <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
+        </li>
+        <li>
+          <input id="userInput" type="text" placeholder="Add to the list" required autofocus />
+          <img id="addBtn" alt="add new task" src="./assets/enter.png" />
+        </li>
+      </ul>
       <button id="clearAllBtn" type="button">Clear all Completed</button>
     </main>
+    <footer>
+      <h3>copyrights <a href="https://github.com/GeekyHacks">geekyhacks</a></h3>
+    </footer>
   </body>
 </html>
-
-<!-- <header><h1>ToDo List</h1></header>
-<main>
-  <ul class="container">
-    <li>
-      <h2>Add Task:</h2>
-      <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
-    </li>
-    <li>
-      <input id="userInput" type="text" placeholder="Add to the list" required autofocus />
-      <img id="addBtn" alt="add new task" src="./assets/enter.png" />
-    </li>
-  </ul>
-  <button id="clearAllBtn" type="button">Clear all Completed</button>
-</main>
-<footer><h3>copyrights <a href="">geekyhacks</a></h3></footer> -->

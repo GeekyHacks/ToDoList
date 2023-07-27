@@ -11,16 +11,24 @@ body
     white-space: pre-wrap
     word-wrap: break-word
     padding: 3rem
+    gap: 3rem
 img
     transition: all 0.5s
+header
+    @include smlInterH2
+
 .container
     @include columnFlex
     justify-content: center
+    justify-items: center
     align-items: stretch
+    align-self: stretch
     background-color: $secondary-color
     border-radius: 4px
     box-shadow: $box-shadow
     padding: 10px
+    margin-left: $qlmargin
+    margin-right: $qrmargin
     text-align: left
 #tasksList
     @include columnFlex
@@ -30,13 +38,11 @@ div, li
     justify-content: space-between
     align-items: center
     border-radius: 4px
-    // margin-top: .3rem
     border: 0
     padding: .1rem
     gap: .1rem
     margin-bottom: .25rem
 li
-    justify-content: space-evenly
     margin-bottom: 0
     padding: .5rem
 
@@ -58,7 +64,6 @@ input
 #userInput
     height: 1.5rem
     width: 100%
-    // margin-bottom: .3rem
 
 #addItem
     flex: .9
@@ -83,14 +88,24 @@ input
     @include button
     margin-top: .3rem
 
-    &:active
-        transform: scale(0.98)
+@media (min-width: 768px)
+    #clearAllBtn
+        margin-left: $Qlmargin
+        margin-right: $Qrmargin
 
-    &:focus
-        outline: 0
+        &:active
+            transform: scale(0.98)
+
+        &:focus
+            outline: 0
+
 .edit
     background-color: $inputColor
 .hide
     visibility: hidden
 .show
     visibility: visible
+footer
+    position: relative
+    align-self: center
+    bottom: 5px

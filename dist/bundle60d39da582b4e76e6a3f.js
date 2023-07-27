@@ -20,23 +20,12 @@ var addTask = function addTask(description, index) {
   index = taskarr.length;
   var newTask = new _userInput_js__WEBPACK_IMPORTED_MODULE_0__.TaskObject(description, index + 1);
   taskarr.push(newTask);
-  // this will sort out the  user input index
-
-  // const sortedArr = [...taskarr];
-  // sortedArr.sort((a, b) => a.index - b.index);
-
-  // taskarr.sort((a, b) => a.index - b.index);
+  taskarr.sort(function (a, b) {
+    return a.index - b.index;
+  });
   (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.saveData)(taskarr);
   return taskarr;
 };
-var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {};
-var $checkboxes = $('#checkbox-container :checkbox');
-$checkboxes.on('change', function () {
-  $checkboxes.each(function () {
-    checkboxValues[this.id] = this.checked;
-  });
-  localStorage.setItem('checkboxValues', JSON.stringify(checkboxValues));
-});
 
 /***/ }),
 
@@ -83,8 +72,6 @@ var tasksList = document.querySelector('#tasksList');
       event.preventDefault();
       task.readOnly = false;
       task.classList.remove('edit');
-      // RTCRtpReceiver;
-
       return event.preventDefault();
     });
     // the trick is with input
@@ -94,8 +81,6 @@ var tasksList = document.querySelector('#tasksList');
       (0,_userInput_js__WEBPACK_IMPORTED_MODULE_2__.saveData)(_addTask_js__WEBPACK_IMPORTED_MODULE_0__.taskarr);
     });
   });
-
-  // taskDescription.parentElement.addEventListener('click', () => task.classList.remove('edit'));
 });
 
 /***/ }),
@@ -244,21 +229,34 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   padding: 3rem;
+  gap: 3rem;
 }
 
 img {
   transition: all 0.5s;
 }
 
+header {
+  color: black;
+  font-size: 1.5rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.0225rem;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-items: center;
   align-items: stretch;
+  align-self: stretch;
   background-color: #acc6e4;
   border-radius: 4px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  margin-left: calc(35% - 100px);
+  margin-right: calc(35% - 100px);
   text-align: left;
 }
 
@@ -281,7 +279,6 @@ div, li {
 }
 
 li {
-  justify-content: space-evenly;
   margin-bottom: 0;
   padding: 0.5rem;
 }
@@ -361,13 +358,19 @@ input {
   text-align: center;
   margin-top: 0.3rem;
 }
-#clearAllBtn:active {
-  transform: scale(0.98);
-}
-#clearAllBtn:focus {
-  outline: 0;
-}
 
+@media (min-width: 768px) {
+  #clearAllBtn {
+    margin-left: calc(30% - 100px);
+    margin-right: calc(30% - 100px);
+  }
+  #clearAllBtn:active {
+    transform: scale(0.98);
+  }
+  #clearAllBtn:focus {
+    outline: 0;
+  }
+}
 .edit {
   background-color: #a8ccf5;
 }
@@ -378,7 +381,13 @@ input {
 
 .show {
   visibility: visible;
-}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACHJ;;AADA;EDSI,aAAA;EACA,sBAAA;ECRA,uBAAA;EACA,mBAAA;EACA,yBDPY;ECQZ,iCAAA;EACA,qBAAA;EACA,qBAAA;EACA,aAAA;AAKJ;;AAJA;EACI,oBAAA;AAOJ;;AANA;EDFI,aAAA;EACA,sBAAA;ECGA,uBAAA;EACA,oBAAA;EACA,yBDjBc;ECkBd,kBAAA;EACA,wEDjBS;ECkBT,aAAA;EACA,gBAAA;AAUJ;;AATA;EDXI,aAAA;EACA,sBAAA;ECYA,WAAA;AAaJ;;AAZA;EDXI,aAAA;EACA,mBAAA;ECYA,8BAAA;EACA,mBAAA;EACA,kBAAA;EAEA,SAAA;EACA,eAAA;EACA,WAAA;EACA,sBAAA;AAeJ;;AAdA;EACI,6BAAA;EACA,gBAAA;EACA,eAAA;AAiBJ;;AAdI;EACI,mBDzCI;AC0DZ;;AAhBA;EACI,WAAA;AAmBJ;AAlBI;EDSA,YAAA;EACA,iBAAA;EACA,gCA1DQ;EA2DR,gBAAA;EACA,yBAAA;ACYJ;;AAtBA;EDYI,YAAA;EACA,iBAAA;EACA,gCAhEQ;EAiER,yBAAA;ECbA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AA4BJ;;AA1BA;EACI,cAAA;EACA,WAAA;AA6BJ;;AA1BA;EACI,SAAA;EACA,aAAA;AA6BJ;;AA5BA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AA+BJ;;AA7BA;EACI,YAAA;EACA,WAAA;EACA,YAAA;AAgCJ;AA/BI;EACI,UAAA;AAiCR;;AAhCA;EACI,mBAAA;AAmCJ;;AAlCA;ED9DI,oBAAA;EACA,kBAAA;EACA,gCArBQ;EAsBR,gBAAA;EACA,iBAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAzBY;EA0BZ,cAzBc;EA0Bd,SAAA;EACA,wEAzBS;EA0BT,YAAA;EACA,eAAA;EACA,kBAAA;ECmDA,kBAAA;AAkDJ;AAhDI;EACI,sBAAA;AAkDR;AAhDI;EACI,UAAA;AAkDR;;AAjDA;EACI,yBDxFQ;AC4IZ;;AAnDA;EACI,kBAAA;AAsDJ;;AArDA;EACI,mBAAA;AAwDJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: .8rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 5px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: .8rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .6rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    padding: 3rem\r\nimg\r\n    transition: all 0.5s\r\n.container\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    text-align: left\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .2rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    // margin-top: .3rem\r\n    border: 0\r\n    padding: .1rem\r\n    gap: .1rem\r\n    margin-bottom: .25rem\r\nli\r\n    justify-content: space-evenly\r\n    margin-bottom: 0\r\n    padding: .5rem\r\n\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .2rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 1.5rem\r\n    width: 100%\r\n    // margin-bottom: .3rem\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,#dotsImg,#trash\r\n    height: 1rem\r\n    width: 1rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#trash\r\n    visibility: visible\r\n#clearAllBtn\r\n    @include button\r\n    margin-top: .3rem\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    visibility: hidden\r\n.show\r\n    visibility: visible\r\n"],"sourceRoot":""}]);
+}
+
+footer {
+  position: relative;
+  align-self: center;
+  bottom: 5px;
+}`, "",{"version":3,"sources":["webpack://./src/styles/sass/global.sass","webpack://./src/styles/sass/main.sass"],"names":[],"mappings":"AAcA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;ACZJ;;AADA;EDkBI,aAAA;EACA,sBAAA;ECjBA,uBAAA;EACA,mBAAA;EACA,yBDPY;ECQZ,iCAAA;EACA,qBAAA;EACA,qBAAA;EACA,aAAA;EACA,SAAA;AAKJ;;AAJA;EACI,oBAAA;AAOJ;;AANA;ED2CI,YAAA;EACA,iBAAA;EACA,gCA7DQ;EA8DR,gBAAA;EACA,0BAAA;ACjCJ;;AAXA;EDGI,aAAA;EACA,sBAAA;ECFA,uBAAA;EACA,qBAAA;EACA,oBAAA;EACA,mBAAA;EACA,yBDvBc;ECwBd,kBAAA;EACA,wEDvBS;ECwBT,aAAA;EACA,8BDlBO;ECmBP,+BDrBO;ECsBP,gBAAA;AAeJ;;AAdA;EDVI,aAAA;EACA,sBAAA;ECWA,WAAA;AAkBJ;;AAjBA;EDVI,aAAA;EACA,mBAAA;ECWA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,SAAA;EACA,eAAA;EACA,WAAA;EACA,sBAAA;AAqBJ;;AApBA;EACI,gBAAA;EACA,eAAA;AAuBJ;;AApBI;EACI,mBD/CI;ACsEZ;;AAtBA;EACI,WAAA;AAyBJ;AAxBI;EDYA,YAAA;EACA,iBAAA;EACA,gCAnEQ;EAoER,gBAAA;EACA,yBAAA;ACeJ;;AA5BA;EDeI,YAAA;EACA,iBAAA;EACA,gCAzEQ;EA0ER,yBAAA;EChBA,SAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;AAkCJ;;AAhCA;EACI,cAAA;EACA,WAAA;AAmCJ;;AAjCA;EACI,SAAA;EACA,aAAA;AAoCJ;;AAnCA;EACI,SAAA;EACA,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,oBAAA;AAsCJ;;AApCA;EACI,YAAA;EACA,WAAA;EACA,YAAA;AAuCJ;AAtCI;EACI,UAAA;AAwCR;;AAvCA;EACI,mBAAA;AA0CJ;;AAzCA;ED1DI,oBAAA;EACA,kBAAA;EACA,gCA9BQ;EA+BR,gBAAA;EACA,iBAAA;EACA,uBAAA;EACA,oBAAA;EACA,yBAlCY;EAmCZ,cAlCc;EAmCd,SAAA;EACA,wEAlCS;EAmCT,YAAA;EACA,eAAA;EACA,kBAAA;EC+CA,kBAAA;AAyDJ;;AAvDA;EACI;IACI,8BDhFG;ICiFH,+BDnFG;EC6IT;EAxDM;IACI,sBAAA;EA0DV;EAxDM;IACI,UAAA;EA0DV;AACF;AAzDA;EACI,yBDnGQ;AC8JZ;;AA1DA;EACI,kBAAA;AA6DJ;;AA5DA;EACI,mBAAA;AA+DJ;;AA9DA;EACI,kBAAA;EACA,kBAAA;EACA,WAAA;AAiEJ","sourcesContent":["$InterFont: \"Inter\", sans-serif\r\n$primary-color: #2fa8cc\r\n$secondary-color: #acc6e4\r\n$inputColor:#a8ccf5\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 20% - 100px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 20% - 100px )\r\n$Qlpadding: calc( 25% - 120px )\r\n$qrmargin: calc( 35% - 100px )\r\n$Qrmargin: calc( 30% - 100px )\r\n$qlmargin: calc( 35% - 100px )\r\n$Qlmargin: calc( 30% - 100px )\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\n// mixings\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 2px\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: .8rem\r\n    letter-spacing: 0.001em\r\n    word-spacing: normal\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    box-shadow: $box-shadow\r\n    padding: 5px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: .8rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .6rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem","@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n\r\n// $trashcan: \r\nbody\r\n    @include columnFlex\r\n    justify-content: center\r\n    align-items: center\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    white-space: pre-wrap\r\n    word-wrap: break-word\r\n    padding: 3rem\r\n    gap: 3rem\r\nimg\r\n    transition: all 0.5s\r\nheader\r\n    @include smlInterH2\r\n\r\n.container\r\n    @include columnFlex\r\n    justify-content: center\r\n    justify-items: center\r\n    align-items: stretch\r\n    align-self: stretch\r\n    background-color: $secondary-color\r\n    border-radius: 4px\r\n    box-shadow: $box-shadow\r\n    padding: 10px\r\n    margin-left: $qlmargin\r\n    margin-right: $qrmargin\r\n    text-align: left\r\n#tasksList\r\n    @include columnFlex\r\n    gap: .2rem\r\ndiv, li\r\n    @include rowFlex\r\n    justify-content: space-between\r\n    align-items: center\r\n    border-radius: 4px\r\n    border: 0\r\n    padding: .1rem\r\n    gap: .1rem\r\n    margin-bottom: .25rem\r\nli\r\n    margin-bottom: 0\r\n    padding: .5rem\r\n\r\n#newTask\r\n    &::focus\r\n        background: $inputColor\r\ndiv\r\n    gap: .2rem\r\n    h1\r\n        @include smlInterH3\r\n\r\ninput\r\n    @include smlInterP\r\n    border: 0\r\n    padding: .3rem\r\n    align-self: stretch\r\n    border-radius: 4px\r\n\r\n#userInput\r\n    height: 1.5rem\r\n    width: 100%\r\n\r\n#addItem\r\n    flex: .9\r\n    outline: none\r\n#checkB\r\n    flex: .1\r\n    border-radius: 4px\r\n    height: 1.3rem\r\n    align-self: center\r\n    cursor: pointer\r\n    transition: all 0.5s\r\n\r\n#recyclImg, #addBtn,#dotsImg,#trash\r\n    height: 1rem\r\n    width: 1rem\r\n    opacity: .5\r\n    &:hover\r\n        opacity: 1\r\n#trash\r\n    visibility: visible\r\n#clearAllBtn\r\n    @include button\r\n    margin-top: .3rem\r\n\r\n@media (min-width: 768px)\r\n    #clearAllBtn\r\n        margin-left: $Qlmargin\r\n        margin-right: $Qrmargin\r\n\r\n        &:active\r\n            transform: scale(0.98)\r\n\r\n        &:focus\r\n            outline: 0\r\n\r\n.edit\r\n    background-color: $inputColor\r\n.hide\r\n    visibility: hidden\r\n.show\r\n    visibility: visible\r\nfooter\r\n    position: relative\r\n    align-self: center\r\n    bottom: 5px\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1053,4 +1062,4 @@ document.addEventListener('click', function (event) {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle308c96fa669f1a0bc31e.js.map
+//# sourceMappingURL=bundle60d39da582b4e76e6a3f.js.map
