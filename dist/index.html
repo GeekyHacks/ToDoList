@@ -7,21 +7,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <title>%= htmlWebpackPlugin.options.title %</title>
-  <script defer src="bundle0a4d8217c7af776c267d.js"></script></head>
+  <script defer src="bundle60d39da582b4e76e6a3f.js"></script></head>
   <body>
+    <header><h1>ToDo List</h1></header>
     <main class="container">
-      <div>
-        <h1 for="cars">ToDo List:</h1>
-        <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
-      </div>
-      <div>
-        <input id="userInput" type="text" placeholder="Add to the list" required autofocus />
-        <img id="addBtn" alt="add new task" src="./assets/enter.png" />
-      </div>
-
-      <ul id="tasksList"></ul>
-
+      <ul id="tasksList">
+        <li>
+          <h2>Add Task:</h2>
+          <img id="recyclImg" src="./assets/refresh.png" alt="refresh todo list" />
+        </li>
+        <li>
+          <input id="userInput" type="text" placeholder="Add to the list" required autofocus />
+          <img id="addBtn" alt="add new task" src="./assets/enter.png" />
+        </li>
+      </ul>
       <button id="clearAllBtn" type="button">Clear all Completed</button>
     </main>
+    <footer>
+      <h3>copyrights <a href="https://github.com/GeekyHacks">geekyhacks</a></h3>
+    </footer>
   </body>
 </html>
